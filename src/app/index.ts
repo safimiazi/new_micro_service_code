@@ -26,58 +26,62 @@ app.use(
     },
   })
 );
-app.use(cors({ origin: ENV.ORIGIN, credentials: ENV.CREDENTIALS }));
+app.use(cors({ origin: ENV.ORIGIN, credentials: true }));
 app.use(hpp());
 app.use(
   helmet({
     crossOriginResourcePolicy: false,
   })
 );
-app.use(
-  helmet.contentSecurityPolicy({
-    useDefaults: true,
-    directives: {
-      defaultSrc: [
-        "'self'",
-        "https://images.unsplash.com",
-        "http://192.168.5.76:5173",
-        "http://127.0.0.1:5173",
-        "http://192.168.5.76:5055",
-        "https://192.168.5.76:5055",
-      ],
-      scriptSrc: [
-        "'self'",
-        "'unsafe-inline'",
-        "'unsafe-eval'",
-        "https://example.com",
-        "https://images.unsplash.com",
-        "http://192.168.5.76:5173",
-        "http://127.0.0.1:5173",
-        "http://192.168.5.76:5055",
-        "https://192.168.5.76:5055",
-      ],
-      // Add 'blob:' to allow the blob scheme
-      objectSrc: [
-        "'none'",
-        "http://192.168.5.76:5173/",
-        "http://127.0.0.1:5173",
-        "http://192.168.5.76:5055",
-        "https://192.168.5.76:5055",
-      ],
-      imgSrc: [
-        "'self'",
-        "data:",
-        "blob:",
-        "https://images.unsplash.com",
-        "http://192.168.5.76:5173/",
-        "http://127.0.0.1:5173",
-        "http://192.168.5.76:5055",
-        "https://192.168.5.76:5055",
-      ], // Allow blob: for images
-      styleSrc: ["'self'", "'unsafe-inline'"],
-    },
-  })
-);
+// app.use(
+//   helmet.contentSecurityPolicy({
+//     useDefaults: true,
+//     directives: {
+//       defaultSrc: [
+//         "'self'",
+//         "https://images.unsplash.com",
+//         "http://192.168.5.76:5173",
+//         "http://127.0.0.1:5173",
+//         "http://127.0.0.1:3000",
+//         "http://192.168.5.76:5055",
+//         "https://192.168.5.76:5055",
+//       ],
+//       scriptSrc: [
+//         "'self'",
+//         "'unsafe-inline'",
+//         "'unsafe-eval'",
+//         "https://example.com",
+//         "https://images.unsplash.com",
+//         "http://192.168.5.76:5173",
+//         "http://127.0.0.1:5173",
+//         "http://127.0.0.1:3000",
+//         "http://192.168.5.76:5055",
+//         "https://192.168.5.76:5055",
+//       ],
+//       // Add 'blob:' to allow the blob scheme
+//       objectSrc: [
+//         "'none'",
+//         "http://192.168.5.76:5173/",
+//         "http://127.0.0.1:5173",
+//         "http://127.0.0.1:3000",
+//         "http://192.168.5.76:5055",
+//         "https://192.168.5.76:5055",
+//       ],
+//       imgSrc: [
+//         "'self'",
+//         "data:",
+//         "blob:",
+//         "https://images.unsplash.com",
+//         "http://192.168.5.76:5173/",
+//         "http://127.0.0.1:5173",
+//         "http://127.0.0.1:3000",
+//         "http://192.168.5.76:5055",
+//         "https://192.168.5.76:5055",
+//       ], // Allow blob: for images
+//       styleSrc: ["'self'", "'unsafe-inline'"],
+//     },
+//   })
+// );
 
 app.use(compression());
 app.use(Express.json());
