@@ -3,8 +3,9 @@ import AuthService from "@/service/auth/auth.service";
 
 const IsAdmin = async (req, res, next) => {
   try {
-    const { sort } = req.cookies;
-    const User = await AuthService.CookieValidator(sort);
+    // DATE For Token Authentication and hi for validation sessions
+    const { date, hi } = req.cookies;
+    const User = await AuthService.CookieValidator(date, hi);
     const UserJson = User.toJSON();
     req.user = UserJson;
     next();

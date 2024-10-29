@@ -83,7 +83,7 @@ const AuthService = {
       throw error;
     }
   },
-  async CookieValidator(cookie: string) {
+  async CookieValidator(cookie: string, session: string) {
     try {
       let userDecode: {
         name: string;
@@ -109,13 +109,18 @@ const AuthService = {
             session: userDecode.session,
           },
         },
+
         attributes: {
-          exclude: ["password", "session"],
+          exclude: ["password"],
         },
       });
 
       if (!User) {
         throw errorCreate(401, "Invalid User please login");
+      }
+
+      if (User.toJSON().session !== session) {
+        throw errorCreate(406, "Invalid User Please Login Again");
       }
       return User;
     } catch (error) {
