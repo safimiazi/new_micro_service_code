@@ -99,6 +99,7 @@ const AuthService = {
           session: string;
         };
       } catch (error) {
+        console.log("🚀 ~ CookieValidator ~ error:", error);
         throw errorCreate(401, "Invalid User please login");
       }
 
@@ -106,10 +107,9 @@ const AuthService = {
         where: {
           [Op.and]: {
             id: userDecode.user,
-            session: userDecode.session,
+            session: session,
           },
         },
-
         attributes: {
           exclude: ["password"],
         },

@@ -9,4 +9,11 @@ export const AdministrationController = {
       next(error);
     }
   },
+  async GetAdmin(req, res, next) {
+    try {
+      res.send(req.admin);
+    } catch (error) {
+      next(error);
+    }
+  },
 };
