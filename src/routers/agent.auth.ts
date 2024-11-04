@@ -7,7 +7,7 @@ import CreateRouter from "@CreateRoute";
 const MakeRouter = new CreateRouter("/ui/agent/auth");
 const app = MakeRouter.getApp();
 
-app.post("/agent-registration", agentController.agentRegistration)
+app.post("/agent-registration", agentController.agentRegistration);
 // create agent registration:
 
 
