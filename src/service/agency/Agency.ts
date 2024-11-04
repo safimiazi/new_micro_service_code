@@ -1,9 +1,9 @@
 export const agencyService = {
-  createNewAgency(data) {
-    try {
-      console.log("🚀 ~ createNewAgency ~ data:", data);
-    } catch (error) {
-      throw error;
-    }
-  },
+   
+  async agentRegistrationService(data) {
+    const { name, address, nid, email, phone } = data;
+
+  }
+
+
 };
