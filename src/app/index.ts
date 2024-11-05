@@ -86,6 +86,7 @@ app.use(
 //   })
 // );
 
+
 app.use(compression());
 app.use(Express.json());
 app.use(Express.urlencoded({ extended: true }));
@@ -108,6 +109,7 @@ db.sequelize.sync({ alter: false, force: false });
 
 const InitRouters = async () => {
   let functionsFolderPath = path.join(__dirname, "../", "routers");
+  
   try {
     // Read all files in the folder
     const files = await fs.readdirSync(functionsFolderPath);
@@ -132,5 +134,7 @@ const InitRouters = async () => {
   }
 };
 InitRouters();
+
+
 
 export default app;

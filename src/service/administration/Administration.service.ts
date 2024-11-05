@@ -7,6 +7,8 @@ import { v4 as uuidv4 } from "uuid";
 import { errorCreate } from "@/middleware/errorHandler";
 
 export const AdministrationService = {
+
+
   async GetById(id: string) {
     return await db.Administration.findOne({
       where: {
@@ -14,6 +16,10 @@ export const AdministrationService = {
       },
     });
   },
+
+
+
+  
   async Create(data: {
     phone: string;
     password: string;

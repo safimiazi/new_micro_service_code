@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { db } from "@/database";
 import { AgencyI } from "@/database/model/Agency";
 interface AddAgency {
@@ -19,4 +20,14 @@ export const agencyController = {
       throw error;
     }
   },
+=======
+export const agencyService = {
+   
+  async agentRegistrationService(data) {
+    const { name, address, nid, email, phone } = data;
+
+  }
+
+
+>>>>>>> 69d221f1d3939d488ec0f7ab260134d3797277f5
 };

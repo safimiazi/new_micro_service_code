@@ -1,6 +1,7 @@
 import { AdministrationService } from "@/service/administration/Administration.service";
 
 export const AdministrationController = {
+
   async Login(req, res, next) {
     try {
       const { email, password } = req.body;
@@ -9,6 +10,7 @@ export const AdministrationController = {
       next(error);
     }
   },
+  
   async GetAdmin(req, res, next) {
     try {
       res.send(req.admin);

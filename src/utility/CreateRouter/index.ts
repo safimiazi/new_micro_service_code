@@ -18,4 +18,5 @@ export default class CreateRouter {
   public getApp(): Router {
     return this.routerBase;
   }
+
 }

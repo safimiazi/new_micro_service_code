@@ -11,10 +11,7 @@ import {
 } from "sequelize";
 
 export interface AdministrationI
-  extends Model<
-    InferAttributes<AdministrationI>,
-    InferCreationAttributes<AdministrationI>
-  > {
+  extends Model<InferAttributes<AdministrationI>,InferCreationAttributes<AdministrationI>> {
   id: CreationOptional<string>;
   name: CreationOptional<string>;
   email: string;
@@ -90,7 +87,6 @@ export function AdministrationModel(sequelize: Sequelize) {
           this.setDataValue("role", JSON.stringify(value));
         },
       },
-
       password: {
         allowNull: false,
         type: DataTypes.STRING(255),
