@@ -1,10 +1,11 @@
 import { ENV } from "@config/env";
 
-import { Sequelize, HasMany, Transaction } from "sequelize";
+import { Sequelize } from "sequelize";
 import { log } from "console";
 import { AdministrationI, AdministrationModel } from "./model/administration";
 import { AgencyI, AgencyModel } from "./model/Agency";
 import { UserI, UserModel } from "./model/user";
+import { LoiAgencyModel } from "./model/LOI_Agency";
 const LogQuery = false;
 
 const sequelize = new Sequelize({
@@ -38,6 +39,7 @@ sequelize.authenticate();
 const Administration = AdministrationModel(sequelize);
 const Agency = AgencyModel(sequelize);
 const User = UserModel(sequelize);
+const LoiAgency = LoiAgencyModel(sequelize);
 
 Agency.hasMany<AgencyI, AdministrationI>(Administration, {
   foreignKey: "ref_admin_id",
@@ -68,4 +70,5 @@ export const db = {
   Administration,
   Agency,
   User,
+  LoiAgency,
 } as const;

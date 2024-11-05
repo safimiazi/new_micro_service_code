@@ -9,6 +9,9 @@ import cookieParser from "cookie-parser";
 import fs from "fs";
 import path from "path";
 import cron from "node-cron";
+import swaggerJsdoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
+import swaggerOptions from "../../swaggerConfig";
 
 import { stream } from "@utility/logger";
 import { db } from "@/database";
@@ -96,6 +99,9 @@ cron.schedule("0 1 * * *", () => {
   );
   createDatabaseBackup();
 });
+
+const specs = swaggerJsdoc(swaggerOptions);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 //Sync database
 db.sequelize.sync({ alter: false, force: false });
