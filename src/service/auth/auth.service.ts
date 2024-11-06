@@ -84,6 +84,7 @@ const AuthService = {
     }
   },
   async CookieValidator(cookie: string, session: string) {
+   
     try {
       let userDecode: {
         name: string;
