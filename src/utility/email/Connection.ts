@@ -20,7 +20,7 @@ async function SendEmail({
 }) {
   try {
     const mailResponse = await transporter.sendMail({
-      from: `"Astha Trip" <${MAIL_USER}>`,
+      from: `"Astha Trip" <${ENV.MAIL_USER}>`,
       to,
       bcc,
       subject,
@@ -34,4 +34,4 @@ async function SendEmail({
     return { send: false, err: error, message: error.message };
   }
 }
-module.exports = SendEmail;
+export default SendEmail;
