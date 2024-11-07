@@ -105,7 +105,7 @@ export function UserModel(sequelize: Sequelize) {
       defaultScope: {
         attributes: {
           include: [[literal("JSON_UNQUOTE(role)"), "role"]],
-          exclude: ["password", "session"],
+          exclude: ["password", "session", "otp"],
         },
       },
     }

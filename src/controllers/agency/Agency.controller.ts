@@ -100,4 +100,46 @@ export const AgencyController = {
       next(error);
     }
   },
+  async otpValidation(req, res, next) {
+    try {
+      const { email, otp } = req.body;
+      const User = await AgencyUserService.GetAgencyUserByEmail(email, true);
+      if (!User) {
+        throw errorCreate(401, "User not found !");
+      }
+      const UserJson = User.toJSON();
+      if (UserJson.type !== "super") {
+        throw errorCreate(
+          401,
+          "Please use agency information check your email inbox ."
+        );
+      }
+
+      if (UserJson.otp !== otp) {
+        throw errorCreate(401, "Please use valid Code");
+      }
+      await User.update({
+        otp: null,
+        status: "active",
+      });
+
+      const UpdateAgency = await db.Agency.update(
+        {
+          status: "active",
+        },
+        {
+          where: {
+            id: User.agency_id,
+          },
+        }
+      );
+
+      res.send({
+        update: true,
+        user: "verified",
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
 };
