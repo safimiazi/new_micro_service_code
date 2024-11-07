@@ -190,7 +190,7 @@ export const AgencyController = {
   },
   async ApproveAgency(req, res, next) {
     try {
-      const { id, Status } = req;
+      const { id, Status } = req.body;
       console.log("🚀 ~ ApproveAgency ~ Status:", Status);
       const Agency = await db.Agency.findOne({
         where: {

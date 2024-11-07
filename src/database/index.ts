@@ -53,13 +53,13 @@ Administration.belongsTo<AdministrationI, AgencyI>(Agency, {
   as: "agency",
 });
 
-User.hasMany<UserI, AgencyI>(Agency, {
+Agency.hasMany<AgencyI, UserI>(User, {
   foreignKey: "agency_id",
   onDelete: "SET NULL",
   as: "agency",
 });
 
-Agency.belongsTo<AgencyI, UserI>(User, {
+User.belongsTo<UserI, AgencyI>(Agency, {
   foreignKey: "agency_id",
   onDelete: "SET NULL",
   as: "user",
