@@ -13,6 +13,7 @@ export interface AgencyI
   id: CreationOptional<string>;
   name: CreationOptional<string>;
   email: string;
+  nid: string;
   phone: string;
   logo: string;
   address: string;
@@ -45,12 +46,17 @@ export function AgencyModel(sequelize: Sequelize) {
       type: DataTypes.STRING(255),
     },
     address: {
-      allowNull: true,
+      allowNull: false,
+      type: DataTypes.STRING(255),
+    },
+    nid: {
+      allowNull: false,
       type: DataTypes.STRING(255),
     },
 
     name: {
       type: DataTypes.STRING,
+      allowNull: false
     },
     status: {
       allowNull: false,

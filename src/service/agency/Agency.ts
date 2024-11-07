@@ -1,3 +1,4 @@
+
 import { db } from "@/database";
 import { AgencyI } from "@/database/model/Agency";
 interface AddAgency {
@@ -20,3 +21,4 @@ export const agencyController = {
     }
   },
 };
+

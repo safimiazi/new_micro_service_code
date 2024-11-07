@@ -80,6 +80,7 @@ export function AdministrationModel(sequelize: Sequelize) {
           }
           return null;
         },
+        
         set(value) {
           if (!value) {
             value = [];
