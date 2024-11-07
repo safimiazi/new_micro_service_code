@@ -1,11 +1,24 @@
 import { db } from "@/database";
 import { errorCreate } from "@/middleware/errorHandler";
-import { agencyController } from "@/service/agency/Agency";
+import { AgencyServices } from "@/service/agency/Agency";
 import { AgencyUserService } from "@/service/agency/AgencyUser";
 import { Op } from "sequelize";
 
+interface CreateAgencyRequestBody {
+  address: string;
+  email: string;
+  name: string;
+  phone: string;
+  password: string;
+  ref_admin_id?: string | null; // optional field
+}
+
 export const AgencyController = {
-  async CreateAgencyWithAdmin(req, res, next) {
+  async CreateAgencyWithAdmin(
+    req: { body: CreateAgencyRequestBody },
+    res,
+    next
+  ) {
     try {
       const body = req.body;
 
@@ -51,13 +64,13 @@ export const AgencyController = {
         }
       }
 
-      const newAgency = await agencyController.createNewAgency({
+      const newAgency = await AgencyServices.createNewAgency({
         address: body.address,
         email: body.email,
         logo: "",
         name: body.name,
         phone: body.phone,
-        status: body.status,
+        status: "non_verify",
         ref_admin_id: body.ref_admin_id || null,
       });
 
@@ -69,7 +82,7 @@ export const AgencyController = {
         name: body.name,
         phone: body.phone,
         otp: null,
-        password: body.password,
+        password: "",
         photo: "",
         // @ts-expect-error skip
         role: [],

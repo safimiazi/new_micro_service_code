@@ -1,4 +1,3 @@
-
 import { db } from "@/database";
 import { AgencyI } from "@/database/model/Agency";
 interface AddAgency {
@@ -11,7 +10,7 @@ interface AddAgency {
   ref_admin_id?: string;
 }
 
-export const agencyController = {
+export const AgencyServices = {
   async createNewAgency(data: AddAgency): Promise<AgencyI> {
     try {
       const NewAgency = await db.Agency.create(data);
@@ -21,4 +20,3 @@ export const agencyController = {
     }
   },
 };
-
