@@ -1,5 +1,3 @@
-
-
 import { agencyControllers } from "@/controllers/Administration/agent.controller";
 import CreateRouter from "@CreateRoute";
 
@@ -7,8 +5,7 @@ import CreateRouter from "@CreateRoute";
 const MakeRouter = new CreateRouter("/ui/agent");
 const app = MakeRouter.getApp();
 
-app.post("/agent-registration", agencyControllers.agencyRegistration)
+app.post("/agent-registration", agencyControllers.agencyRegistration);
 // create agent registration:
-
 
 export default MakeRouter;
