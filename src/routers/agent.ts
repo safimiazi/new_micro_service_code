@@ -9,6 +9,7 @@ const app = MakeRouter.getApp();
 
 app.post("/agent-registration", AgencyController.CreateAgencyWithAdmin);
 app.post("/otp-validation", AgencyController.otpValidation);
+app.post("/agent-request-handel", AgencyController.ApproveAgency);
 // create agent registration:
 // authentication
 app.post("/login", AgencyUserController.Login);
