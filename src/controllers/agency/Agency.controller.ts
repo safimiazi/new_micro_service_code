@@ -25,7 +25,7 @@ export const AgencyController = {
       // check if agency already exists
       const existsAgency = await db.Agency.findOne({
         where: {
-          [Op.and]: {
+          [Op.or]: {
             email: body.email,
             phone: body.phone,
           },
@@ -95,6 +95,75 @@ export const AgencyController = {
       res.send({
         userCreated: true,
         status: "success",
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
+  async otpValidation(req, res, next) {
+    try {
+      const { email, otp } = req.body;
+      const User = await AgencyUserService.GetAgencyUserByEmail(email, true);
+      if (!User) {
+        throw errorCreate(401, "User not found !");
+      }
+      const UserJson = User.toJSON();
+      if (UserJson.type !== "super") {
+        throw errorCreate(
+          401,
+          "Please use agency information check your email inbox ."
+        );
+      }
+
+      if (UserJson.otp !== otp) {
+        throw errorCreate(401, "Please use valid Code");
+      }
+      await User.update({
+        otp: null,
+        status: "active",
+      });
+
+      const UpdateAgency = await db.Agency.update(
+        {
+          status: "active",
+        },
+        {
+          where: {
+            id: User.agency_id,
+          },
+        }
+      );
+
+      res.send({
+        update: true,
+        user: "verified",
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
+  async GetAll(req, res, next) {
+    try {
+      const { page = 1, limit = 10, email, status } = req.query; // Get page and limit from query parameters
+      const offset = (page - 1) * limit; // Calculate offset for pagination
+
+      const agencies = await db.Agency.findAll({
+        where: {
+          [Op.and]: [
+            status ? { status: status } : {}, // Include status if it's not null
+            email ? { email: { [Op.like]: email } } : {}, // Include email if it's not null
+          ],
+        },
+        limit: limit.toString(), // Convert limit back to string
+        offset: offset, // Convert offset back to string
+      });
+
+      res.send({
+        page: parseInt(page),
+        limit: parseInt(limit),
+        email: email,
+        status,
+        data: agencies,
       });
     } catch (error) {
       next(error);

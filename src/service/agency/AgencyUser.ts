@@ -7,7 +7,24 @@ export const AgencyUserService = {
       const user = await db.User.create(data);
       return user;
     } catch (error) {
-      console.log("🚀 ~ CreateNewUser ~ error:", error);
+      throw error;
+    }
+  },
+  async GetAgencyUserByEmail(email: string, U = false): Promise<UserI> {
+    try {
+      if (U) {
+        const user = await db.User.unscoped().findOne({
+          where: { email },
+        });
+        return user;
+      } else {
+        const user = await db.User.findOne({
+          where: { email },
+        });
+        return user;
+      }
+    } catch (error) {
+      throw error;
     }
   },
 };
