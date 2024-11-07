@@ -150,12 +150,10 @@ export const AgencyController = {
 
       const agencies = await db.Agency.findAll({
         where: {
-          [Op.or]: {
-            status: status,
-            email: {
-              [Op.like]: email,
-            },
-          },
+          [Op.and]: [
+            status ? { status: status } : {}, // Include status if it's not null
+            email ? { email: { [Op.like]: email } } : {}, // Include email if it's not null
+          ],
         },
         limit: limit.toString(), // Convert limit back to string
         offset: offset, // Convert offset back to string
@@ -165,6 +163,7 @@ export const AgencyController = {
         page: parseInt(page),
         limit: parseInt(limit),
         email: email,
+        status,
         data: agencies,
       });
     } catch (error) {
