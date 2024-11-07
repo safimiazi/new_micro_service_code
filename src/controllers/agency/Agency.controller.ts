@@ -2,7 +2,9 @@ import { db } from "@/database";
 import { errorCreate } from "@/middleware/errorHandler";
 import { AgencyServices } from "@/service/agency/Agency";
 import { AgencyUserService } from "@/service/agency/AgencyUser";
+import SendEmail from "@/utility/email/Connection";
 import { Op } from "sequelize";
+import { v4 as uuidv4 } from "uuid";
 
 interface CreateAgencyRequestBody {
   address: string;
@@ -118,8 +120,12 @@ export const AgencyController = {
       if (UserJson.otp !== otp) {
         throw errorCreate(401, "Please use valid Code");
       }
+
+      const Session = uuidv4();
+
       await User.update({
         otp: null,
+        session: Session,
         status: "active",
       });
 
@@ -137,18 +143,16 @@ export const AgencyController = {
       res.send({
         update: true,
         user: "verified",
+        Session,
       });
     } catch (error) {
       next(error);
     }
   },
-
   async GetAll(req, res, next) {
     try {
       const { page = 0, limit = 10, email, status } = req.query;
-      const offset = page  * parseInt(limit); // Calculate offset as a number
-      
-  
+      const offset = page * parseInt(limit); // Calculate offset as a number
 
       const agencies = await db.Agency.findAll({
         where: {
@@ -161,16 +165,16 @@ export const AgencyController = {
         offset, // Use numeric offset
       });
 
-       // Get total count of records in the table without filters
-    const totalRecords = await db.Agency.count({
-      where: {
-        [Op.and]: [
-          status ? { status } : {}, // Include status if provided
-          email ? { email: { [Op.like]: `%${email}%` } } : {}, // Add wildcard for partial matching
-        ],
-      },
-    });
-  
+      // Get total count of records in the table without filters
+      const totalRecords = await db.Agency.count({
+        where: {
+          [Op.and]: [
+            status ? { status } : {}, // Include status if provided
+            email ? { email: { [Op.like]: `%${email}%` } } : {}, // Add wildcard for partial matching
+          ],
+        },
+      });
+
       res.send({
         page: parseInt(page),
         limit: parseInt(limit),
@@ -184,7 +188,6 @@ export const AgencyController = {
       next(error);
     }
   },
-
   async ApproveAgency(req, res, next) {
     try {
       const { id, Status } = req;
@@ -210,6 +213,28 @@ export const AgencyController = {
       }
       // Generate OTP
       const otp = Math.floor(10000 + Math.random() * 90000).toString();
+      // send email
+      const EmailStatus = await SendEmail({
+        to: User.toJSON().email,
+        bcc: [],
+        attachments: [],
+        html: `
+        <p>validation url: /auth/otp_validation?email=${User.toJSON().email}<p>
+        <p>OTP: ${otp}<p>
+        `,
+        subject: "Astha Trip Confirm Your Agency Account",
+        text: "",
+      });
+
+      await User.update({
+        otp: otp,
+      });
+
+      res.send({
+        status: 200,
+        approve: true,
+        EmailStatus,
+      });
     } catch (error) {
       next(error);
     }
