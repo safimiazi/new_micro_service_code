@@ -183,6 +183,35 @@ export const AgencyController = {
       console.log("🚀 ~ GetAll ~ error:", error);
       next(error);
     }
-  }
-  
+  },
+
+  async ApproveAgency(req, res, next) {
+    try {
+      const { id, Status } = req;
+      const Agency = await db.Agency.findOne({
+        where: {
+          id: id,
+        },
+      });
+      if (!Agency) {
+        throw errorCreate(404, "Agency not found !");
+      }
+
+      // UPDATE
+
+      const User = await db.User.findOne({
+        where: {
+          agency_id: Agency.id,
+          type: "super",
+        },
+      });
+      if (!User) {
+        throw errorCreate(404, "Admin User not found !");
+      }
+      // Generate OTP
+      const otp = Math.floor(10000 + Math.random() * 90000).toString();
+    } catch (error) {
+      next(error);
+    }
+  },
 };
