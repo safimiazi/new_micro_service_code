@@ -25,7 +25,7 @@ export const AgencyController = {
       // check if agency already exists
       const existsAgency = await db.Agency.findOne({
         where: {
-          [Op.and]: {
+          [Op.or]: {
             email: body.email,
             phone: body.phone,
           },
@@ -145,13 +145,16 @@ export const AgencyController = {
 
   async GetAll(req, res, next) {
     try {
-      const { page = 1, limit = 10, email } = req.query; // Get page and limit from query parameters
+      const { page = 1, limit = 10, email, status } = req.query; // Get page and limit from query parameters
       const offset = (page - 1) * limit; // Calculate offset for pagination
 
       const agencies = await db.Agency.findAll({
         where: {
-          email: {
-            [Op.like]: email,
+          [Op.or]: {
+            status: status,
+            email: {
+              [Op.like]: email,
+            },
           },
         },
         limit: limit.toString(), // Convert limit back to string
