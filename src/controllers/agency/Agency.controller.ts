@@ -142,7 +142,6 @@ export const AgencyController = {
       next(error);
     }
   },
-
   async GetAll(req, res, next) {
     try {
       const { page = 1, limit = 10, email, status } = req.query; // Get page and limit from query parameters
