@@ -142,4 +142,30 @@ export const AgencyController = {
       next(error);
     }
   },
+
+  async GetAll(req, res, next) {
+    try {
+      const { page = 1, limit = 10, email } = req.query; // Get page and limit from query parameters
+      const offset = (page - 1) * limit; // Calculate offset for pagination
+
+      const agencies = await db.Agency.findAll({
+        where: {
+          email: {
+            [Op.like]: email,
+          },
+        },
+        limit: limit.toString(), // Convert limit back to string
+        offset: offset, // Convert offset back to string
+      });
+
+      res.send({
+        page: parseInt(page),
+        limit: parseInt(limit),
+        email: email,
+        data: agencies,
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
 };
