@@ -146,9 +146,7 @@ export const AgencyController = {
   async GetAll(req, res, next) {
     try {
       const { page = 0, limit = 10, email, status } = req.query;
-      const offset = page  * parseInt(limit); // Calculate offset as a number
-      
-  
+      const offset = page * parseInt(limit); // Calculate offset as a number
 
       const agencies = await db.Agency.findAll({
         where: {
@@ -161,16 +159,16 @@ export const AgencyController = {
         offset, // Use numeric offset
       });
 
-       // Get total count of records in the table without filters
-    const totalRecords = await db.Agency.count({
-      where: {
-        [Op.and]: [
-          status ? { status } : {}, // Include status if provided
-          email ? { email: { [Op.like]: `%${email}%` } } : {}, // Add wildcard for partial matching
-        ],
-      },
-    });
-  
+      // Get total count of records in the table without filters
+      const totalRecords = await db.Agency.count({
+        where: {
+          [Op.and]: [
+            status ? { status } : {}, // Include status if provided
+            email ? { email: { [Op.like]: `%${email}%` } } : {}, // Add wildcard for partial matching
+          ],
+        },
+      });
+
       res.send({
         page: parseInt(page),
         limit: parseInt(limit),
