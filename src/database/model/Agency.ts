@@ -50,7 +50,7 @@ export function AgencyModel(sequelize: Sequelize) {
       type: DataTypes.STRING(255),
     },
     nid: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.STRING(255),
     },
 

@@ -142,29 +142,74 @@ export const AgencyController = {
       next(error);
     }
   },
+
   async GetAll(req, res, next) {
     try {
-      const { page = 1, limit = 10, email, status } = req.query; // Get page and limit from query parameters
-      const offset = (page - 1) * limit; // Calculate offset for pagination
+      const { page = 0, limit = 10, email, status } = req.query;
+      const offset = page  * parseInt(limit); // Calculate offset as a number
+      
+  
 
       const agencies = await db.Agency.findAll({
         where: {
           [Op.and]: [
-            status ? { status: status } : {}, // Include status if it's not null
-            email ? { email: { [Op.like]: email } } : {}, // Include email if it's not null
+            status ? { status } : {}, // Include status if provided
+            email ? { email: { [Op.like]: `%${email}%` } } : {}, // Add wildcard for partial matching
           ],
         },
-        limit: limit.toString(), // Convert limit back to string
-        offset: offset, // Convert offset back to string
+        limit: parseInt(limit), // Ensure limit is a number
+        offset, // Use numeric offset
       });
 
+       // Get total count of records in the table without filters
+    const totalRecords = await db.Agency.count({
+      where: {
+        [Op.and]: [
+          status ? { status } : {}, // Include status if provided
+          email ? { email: { [Op.like]: `%${email}%` } } : {}, // Add wildcard for partial matching
+        ],
+      },
+    });
+  
       res.send({
         page: parseInt(page),
         limit: parseInt(limit),
-        email: email,
+        totalRecords,
+        email,
         status,
         data: agencies,
       });
+    } catch (error) {
+      console.log("🚀 ~ GetAll ~ error:", error);
+      next(error);
+    }
+  },
+
+  async ApproveAgency(req, res, next) {
+    try {
+      const { id, Status } = req;
+      const Agency = await db.Agency.findOne({
+        where: {
+          id: id,
+        },
+      });
+      if (!Agency) {
+        throw errorCreate(404, "Agency not found !");
+      }
+
+      // UPDATE
+
+      const User = await db.User.findOne({
+        where: {
+          agency_id: Agency.id,
+          type: "super",
+        },
+      });
+      if (!User) {
+        throw errorCreate(404, "Admin User not found !");
+      }
+      // Generate OTP
+      const otp = Math.floor(10000 + Math.random() * 90000).toString();
     } catch (error) {
       next(error);
     }
