@@ -5,6 +5,7 @@ import { AgencyUserService } from "@/service/agency/AgencyUser";
 import SendEmail from "@/utility/email/Connection";
 import emailTemplate from "@/utility/emailTamplate/tamplate";
 import { Op } from "sequelize";
+import { message } from "telegraf/filters";
 import { v4 as uuidv4 } from "uuid";
 
 interface CreateAgencyRequestBody {
@@ -221,7 +222,11 @@ export const AgencyController = {
         to: User.toJSON().email,
         bcc: [],
         attachments: [],
-        html: await emailTemplate(otp, Agency.toJSON().name, Agency.toJSON().email),
+        html: await emailTemplate(
+          otp,
+          Agency.toJSON().name,
+          Agency.toJSON().email
+        ),
         subject: "Astha Trip Confirm Your Agency Account",
         text: "",
       });
@@ -240,7 +245,26 @@ export const AgencyController = {
     }
   },
   async SetAgencyPassword(req, res, next) {
-    const {session, password} = req.body;
-    const result = await AgencyUserService.SetAgencyPasswordInDB(session, password)
-  }
+    const { session, password } = req.body;
+    const result: any = await AgencyUserService.SetAgencyPasswordInDB(
+      session,
+      password
+    );
+    console.log("result", result);
+
+    // Check if the result contains an error
+    if (result.error) {
+      console.error("Error:", result.error);
+      return res.status(400).send({
+        status: 400,
+        message: result.error,
+      });
+    }
+    res.send({
+      status: 200,
+      success: true,
+      message: "password created successfully.",
+      data: result,
+    });
+  },
 };

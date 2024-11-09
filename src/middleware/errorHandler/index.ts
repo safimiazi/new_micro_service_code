@@ -4,12 +4,7 @@ import createHttpError from "http-errors";
 import createError from "http-errors";
 
 declare type WebError = Error & { status?: number };
-export const errorHandler = (
-  err: WebError,
-  req: Request,
-  res: Response,
-  next: NextFunction
-): void => {
+export const errorHandler = ( err: WebError, req: Request, res: Response, next: NextFunction): void => {
   // // set locals, only providing error in development
   // res.locals.message = err.message;
   // res.locals.error = req.app.get("env") === "development" ? err : {};
@@ -95,5 +90,6 @@ type HttpStatusCode =
   | 511;
 
 export const errorCreate = (status: HttpStatusCode, message: string) => {
-  return createHttpError(status, message);
+   return createHttpError(status, message);
+
 };
