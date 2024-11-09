@@ -83,8 +83,8 @@ const AuthService = {
       throw error;
     }
   },
+
   async CookieValidator(cookie: string, session: string) {
-   
     try {
       let userDecode: {
         name: string;
@@ -128,6 +128,51 @@ const AuthService = {
       throw error;
     }
   },
+
+  async agentCookieValidator(cookie: string, session: string) {
+    try {
+      let userDecode: {
+        userId: string;
+        session: string;
+        email: string;
+      };
+
+      try {
+        userDecode = jwt.verify(cookie, ENV.SECRET_KEY) as {
+          userId: string;
+          session: string;
+          email: string;
+        };
+        console.log("userDecode", userDecode)
+      } catch (error) {
+        throw errorCreate(401, "Invalid User please login");
+      }
+
+      const user = await db.User.unscoped().findOne({
+        where: {
+          [Op.and]: {
+            id: userDecode.userId,
+            session: session,
+          },
+        },
+        attributes: {
+          exclude: ["password"],
+        },
+      });
+      
+
+      if (!user) {
+        throw errorCreate(401, "Invalid user, Please Login");
+      }
+      if (user.toJSON().session !== session) {
+        throw errorCreate(401, "Invalid user, Please Login again");
+      }
+      return user;
+    } catch (error) {
+      throw error;
+    }
+  },
+
   async jwtValidator(Token: string) {
     try {
       let userDecode: {
