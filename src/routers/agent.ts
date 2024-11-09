@@ -11,6 +11,7 @@ app.post("/agent-registration", AgencyController.CreateAgencyWithAdmin);
 app.post("/otp-validation", AgencyController.otpValidation);
 app.post("/agent-request-handel", AgencyController.ApproveAgency);
 app.post("/set-agent-password", AgencyController.SetAgencyPassword)
+app.post("/agent-login", AgencyController.AgencyLogin)
 
 // authentication
 app.post("/login", AgencyUserController.Login);

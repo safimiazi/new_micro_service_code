@@ -5,9 +5,10 @@ import { AgencyUserService } from "@/service/agency/AgencyUser";
 import SendEmail from "@/utility/email/Connection";
 import emailTemplate from "@/utility/emailTamplate/tamplate";
 import { Op } from "sequelize";
-import { message } from "telegraf/filters";
+import cookie from "cookie";
 import { v4 as uuidv4 } from "uuid";
-
+import jwt from "jsonwebtoken";
+import { ENV } from "@/config/env";
 interface CreateAgencyRequestBody {
   address: string;
   email: string;
@@ -245,26 +246,75 @@ export const AgencyController = {
     }
   },
   async SetAgencyPassword(req, res, next) {
-    const { session, password } = req.body;
-    const result: any = await AgencyUserService.SetAgencyPasswordInDB(
-      session,
-      password
-    );
-    console.log("result", result);
+    try {
+      const { session, password } = req.body;
+      const result: any = await AgencyUserService.SetAgencyPasswordInDB(
+        session,
+        password
+      );
+      console.log("result", result);
 
-    // Check if the result contains an error
-    if (result.error) {
-      console.error("Error:", result.error);
-      return res.status(400).send({
-        status: 400,
-        message: result.error,
+      // Check if the result contains an error
+      if (result.error) {
+        console.error("Error:", result.error);
+        return res.status(400).send({
+          status: 400,
+          message: result.error,
+        });
+      }
+      res.send({
+        status: 200,
+        success: true,
+        message: "password created successfully.",
+        data: result,
       });
+    } catch (error) {
+      next(error);
     }
-    res.send({
-      status: 200,
-      success: true,
-      message: "password created successfully.",
-      data: result,
-    });
+  },
+
+  async AgencyLogin(req, res, next) {
+    try {
+      const { email, password } = req.body;
+
+      // Attempt login in the database
+      const user = await AgencyUserService.agencyLoginIntoDB(email, password);
+
+      // Extract user details for token creation and session management
+      const userData = user.toJSON();
+      const token = jwt.sign(
+        {
+          userId: userData.id,
+          email: userData.email,
+          phone: userData.phone,
+        },
+        ENV.SECRET_KEY,
+        { expiresIn: "1d" }
+      );
+
+      // Set cookies for authentication and session tracking
+      res.setHeader("Set-Cookie", [
+        cookie.serialize("login", token, {
+          maxAge: 86400, // 1 day in seconds
+          sameSite: "strict",
+          path: "/",
+          httpOnly: true,
+        }),
+        cookie.serialize("session", userData.session, {
+          maxAge: 86400, // 1 day in seconds
+          sameSite: "strict",
+          path: "/",
+          httpOnly: true,
+        }),
+      ]);
+
+      // Send success response
+      res.status(200).json({
+        success: true,
+        message: "Login successful",
+      });
+    } catch (error) {
+      next(error);
+    }
   },
 };
