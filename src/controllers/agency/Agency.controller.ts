@@ -3,6 +3,7 @@ import { errorCreate } from "@/middleware/errorHandler";
 import { AgencyServices } from "@/service/agency/Agency";
 import { AgencyUserService } from "@/service/agency/AgencyUser";
 import SendEmail from "@/utility/email/Connection";
+import emailTemplate from "@/utility/emailTamplate/tamplate";
 import { Op } from "sequelize";
 import { v4 as uuidv4 } from "uuid";
 
@@ -102,6 +103,7 @@ export const AgencyController = {
       next(error);
     }
   },
+
   async otpValidation(req, res, next) {
     try {
       const { email, otp } = req.body;
@@ -219,10 +221,7 @@ export const AgencyController = {
         to: User.toJSON().email,
         bcc: [],
         attachments: [],
-        html: `
-        <p>validation url: /auth/otp_validation?email=${User.toJSON().email}<p>
-        <p>OTP: ${otp}<p>
-        `,
+        html: await emailTemplate(otp, Agency.toJSON().name, Agency.toJSON().email),
         subject: "Astha Trip Confirm Your Agency Account",
         text: "",
       });
@@ -240,4 +239,8 @@ export const AgencyController = {
       next(error);
     }
   },
+  async SetAgencyPassword(req, res, next) {
+    const {session, password} = req.body;
+    const result = await AgencyUserService.SetAgencyPasswordInDB(session, password)
+  }
 };

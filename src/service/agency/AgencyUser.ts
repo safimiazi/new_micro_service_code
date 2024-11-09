@@ -27,4 +27,12 @@ export const AgencyUserService = {
       throw error;
     }
   },
+
+
+  async SetAgencyPasswordInDB  (session : string, password : string) {
+const  user = await db.User.findOne({
+  where : {session}
+})
+console.log("user", user)
+  } 
 };
