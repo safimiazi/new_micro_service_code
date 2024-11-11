@@ -15,3 +15,13 @@ interface UserInterface {
   createdAt?: Date;
   updatedAt?: Date;
 }
+
+interface AgencyUserInterface {
+  name: string;
+  email: string;
+  phone: string;
+  coverPhoto: string;
+  profilePhoto: string;
+  designation: string;
+  password: string;
+}

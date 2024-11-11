@@ -1,6 +1,6 @@
 import AuthService from "@/service/auth/auth.service";
 
- export const isAgent = async (req, res, next) => {
+ export const isAgency = async (req, res, next) => {
 
     try {
         const {login, session} = req.cookies;

@@ -351,4 +351,33 @@ export const AgencyController = {
       next(error);
     }
   },
+
+
+  async CreateNewAgencyUser(req, res, next) {
+    try {
+   
+      const { name, email, phone, designation, password, coverPhoto, profilePhoto } = req.body;
+   const profilePic = profilePhoto // Access profile photo path
+      const coverPic = coverPhoto // Access cover photo path
+    console.log("cover", coverPic)
+      // const newUser = await AgencyServices.CreateNewAgencyUserIntoDB({
+      //   name,
+      //   email,
+      //   phone,
+      //   designation,
+      //   password,
+      //   coverPhoto,
+      //   profilePhoto,
+      // });
+  
+     
+      // res.status(201).json({
+      //   message: "New agency user created successfully",
+      //   data: newUser,
+      // });
+    } catch (error) {
+      next(error); 
+    }
+  }
+  
 };
