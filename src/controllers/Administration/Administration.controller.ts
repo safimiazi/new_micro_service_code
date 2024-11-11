@@ -18,4 +18,11 @@ export const AdministrationController = {
       next(error);
     }
   },
+  async getAgent(req, res, next) {
+    try {
+      res.send(req.agent);
+    } catch (error) {
+      next(error);
+    }
+  },
 };

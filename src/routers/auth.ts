@@ -1,5 +1,6 @@
 import { AdministrationController } from "@/controllers/Administration/Administration.controller";
 import IsAdmin from "@/middleware/auth/isAdmin";
+import { isAgent } from "@/middleware/auth/isAgent";
 
 import CreateRouter from "@CreateRoute";
 
