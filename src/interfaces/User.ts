@@ -8,7 +8,7 @@ interface UserInterface {
   role: string;
   type: "super" | "user";
   password: string;
-  status: "active" | "deactivate" | "non_verify";
+  status: "active" | "deactivate" | "non_verify" | "request";
   session: string;
   otp: string;
   agency_id?: string;
