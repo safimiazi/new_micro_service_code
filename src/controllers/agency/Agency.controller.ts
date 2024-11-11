@@ -58,7 +58,7 @@ export const AgencyController = {
           );
         }
 
-        if (Status === "non_verify") {
+        if (Status === "non_verify" || Status === "request") {
           throw errorCreate(
             400,
             "Your Account is on verification stage now. If you are Selected we will inform you with a email "

@@ -21,7 +21,7 @@ export interface UserI
   role: CreationOptional<string>;
   type: CreationOptional<"super" | "user">;
   password: string;
-  status: "active" | "deactivate" | "non_verify";
+  status: "active" | "deactivate" | "non_verify" | "request";
   session: string;
   otp: string;
   agency_id?: ForeignKey<string>;
@@ -66,7 +66,7 @@ export function UserModel(sequelize: Sequelize) {
       },
       status: {
         allowNull: false,
-        type: DataTypes.ENUM("active", "deactivate", "non_verify"),
+        type: DataTypes.ENUM("active", "deactivate", "non_verify", "request"),
       },
 
       session: {
