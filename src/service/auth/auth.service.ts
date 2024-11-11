@@ -143,7 +143,7 @@ const AuthService = {
           session: string;
           email: string;
         };
-        console.log("userDecode", userDecode)
+        console.log("userDecode", userDecode);
       } catch (error) {
         throw errorCreate(401, "Invalid User please login");
       }
@@ -159,7 +159,6 @@ const AuthService = {
           exclude: ["password"],
         },
       });
-      
 
       if (!user) {
         throw errorCreate(401, "Invalid user, Please Login");
