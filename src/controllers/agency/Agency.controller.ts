@@ -9,6 +9,7 @@ import cookie from "cookie";
 import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
 import { ENV } from "@/config/env";
+import emailRejectTemplate from "@/utility/emailTamplate/emailRejectTemplate";
 interface CreateAgencyRequestBody {
   address: string;
   email: string;
@@ -194,8 +195,8 @@ export const AgencyController = {
   },
   async ApproveAgency(req, res, next) {
     try {
-      const { id, Status } = req.body;
-      console.log("🚀 ~ ApproveAgency ~ Status:", Status);
+      const { id, status } = req.body;
+      console.log("🚀 ~ ApproveAgency ~ Status:", status);
       const Agency = await db.Agency.findOne({
         where: {
           id: id,
@@ -216,35 +217,68 @@ export const AgencyController = {
       if (!User) {
         throw errorCreate(404, "Admin User not found !");
       }
-      // Generate OTP
-      const otp = Math.floor(10000 + Math.random() * 90000).toString();
-      // send email
-      const EmailStatus = await SendEmail({
-        to: User.toJSON().email,
-        bcc: [],
-        attachments: [],
-        html: await emailTemplate(
-          otp,
-          Agency.toJSON().name,
-          Agency.toJSON().email
-        ),
-        subject: "Astha Trip Confirm Your Agency Account",
-        text: "",
-      });
+      if (status === "approve") {
+        // Generate OTP
+        const otp = Math.floor(10000 + Math.random() * 90000).toString();
+        // send email
+      const  EmailStatus = await SendEmail({
+          to: User.toJSON().email,
+          bcc: [],
+          attachments: [],
+          html: await emailTemplate(
+            otp,
+            Agency.toJSON().name,
+            Agency.toJSON().email
+          ),
+          subject: "Astha Trip Confirm Your Agency Account",
+          text: "",
+        });
 
-      await User.update({
-        otp: otp,
-      });
+        await User.update({
+          otp: otp,
+        });
 
-      res.send({
-        status: 200,
-        approve: true,
-        EmailStatus,
-      });
+        res.send({
+          status: 200,
+          approve: true,
+          EmailStatus,
+        });
+      }
+
+      if(status === "reject"){
+        // status deactivate of user:
+        await User.update({
+          status : "deactivate"
+        })
+        await Agency.update({
+          status: "block"
+        })
+     const   EmailStatus = await SendEmail({
+          to: User.toJSON().email,
+          bcc: [],
+          attachments: [],
+          html: await emailRejectTemplate(
+        
+            Agency.toJSON().name,
+          ),
+          subject: "Astha Trip Reject Your Agency Account",
+          text: "",
+        });
+
+        res.send({
+          status: 200,
+          reject: true,
+          EmailStatus,
+        });
+
+      }
+
+    
     } catch (error) {
       next(error);
     }
   },
+
   async SetAgencyPassword(req, res, next) {
     try {
       const { session, password } = req.body;
