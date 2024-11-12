@@ -111,6 +111,25 @@ export const AgencyServices = {
     }
   
     return user;
+  },
+  async DeleteAgencySingleUserFromDB(id) {
+    if (!id) {
+      throw errorCreate(400, "User ID is required");
+    }
+  
+    const user = await db.User.findOne({
+      where: {
+        id: id, 
+        type: "user",
+        status: "active",
+      },
+    });
+  
+    if (!user) {
+      throw errorCreate(404, "User not found");
+    }
+  
+    return user;
   }
   
 };

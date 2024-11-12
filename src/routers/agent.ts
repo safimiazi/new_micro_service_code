@@ -27,6 +27,7 @@ app.post("/create-agency-new-user", isAgency,  upload.fields([
   ]), AgencyController.CreateNewAgencyUser );
 app.get("/get-agency-users", isAgency, AgencyController.GetAgencyUsers)
 app.get("/get-agency-single-user", isAgency, AgencyController.GetAgencySingleUser)
+app.get("/get-agency-single-user", isAgency, AgencyController.DeleteAgencySingleUser)
 
 // authentication
 app.post("/login", AgencyUserController.Login);

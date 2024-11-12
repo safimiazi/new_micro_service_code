@@ -351,11 +351,13 @@ export const AgencyController = {
       const { name, email, phone, designation, password } = req.body;
       // Extract file paths
       const profilePhoto = req.files.profilePhoto
-        ? req.files.profilePhoto[0].path
+        ? req.files.profilePhoto[0].filename
         : null;
       const coverPhoto = req.files.coverPhoto
-        ? req.files.coverPhoto[0].path
+        ? req.files.coverPhoto[0].filename
         : null;
+
+        console.log("profilePhoto", profilePhoto)
 
       // Construct data for saving
       const newUserData = {
@@ -405,4 +407,13 @@ export const AgencyController = {
       data: result,
     });
   },
+ async DeleteAgencySingleUser (req, res, next){
+  const {id} = req.query;
+  const result = await AgencyServices.DeleteAgencySingleUserFromDB(id)
+  
+
+ }
+
+
+  
 };
