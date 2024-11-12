@@ -24,7 +24,9 @@ app.get("/login-agent", isAgency, AdministrationController.getAgent);
 app.post("/create-agency-new-user", isAgency,  upload.fields([
     { name: 'profilePhoto', maxCount: 1 }, 
     { name: 'coverPhoto', maxCount: 1 } 
-  ]), AgencyController.CreateNewAgencyUser )
+  ]), AgencyController.CreateNewAgencyUser );
+app.get("/get-agency-users", isAgency, AgencyController.GetAgencyUsers)
+app.get("/get-agency-single-user", isAgency, AgencyController.GetAgencySingleUser)
 
 // authentication
 app.post("/login", AgencyUserController.Login);

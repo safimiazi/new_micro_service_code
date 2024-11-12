@@ -221,7 +221,7 @@ export const AgencyController = {
         // Generate OTP
         const otp = Math.floor(10000 + Math.random() * 90000).toString();
         // send email
-      const  EmailStatus = await SendEmail({
+        const EmailStatus = await SendEmail({
           to: User.toJSON().email,
           bcc: [],
           attachments: [],
@@ -245,22 +245,19 @@ export const AgencyController = {
         });
       }
 
-      if(status === "reject"){
+      if (status === "reject") {
         // status deactivate of user:
         await User.update({
-          status : "deactivate"
-        })
+          status: "deactivate",
+        });
         await Agency.update({
-          status: "block"
-        })
-     const   EmailStatus = await SendEmail({
+          status: "block",
+        });
+        const EmailStatus = await SendEmail({
           to: User.toJSON().email,
           bcc: [],
           attachments: [],
-          html: await emailRejectTemplate(
-        
-            Agency.toJSON().name,
-          ),
+          html: await emailRejectTemplate(Agency.toJSON().name),
           subject: "Astha Trip Reject Your Agency Account",
           text: "",
         });
@@ -270,10 +267,7 @@ export const AgencyController = {
           reject: true,
           EmailStatus,
         });
-
       }
-
-    
     } catch (error) {
       next(error);
     }
@@ -352,37 +346,63 @@ export const AgencyController = {
     }
   },
 
-
   async CreateNewAgencyUser(req, res, next) {
     try {
-   
       const { name, email, phone, designation, password } = req.body;
-   // Extract file paths
-   const profilePhoto = req.files.profilePhoto ? req.files.profilePhoto[0].path : null;
-   const coverPhoto = req.files.coverPhoto ? req.files.coverPhoto[0].path : null;
+      // Extract file paths
+      const profilePhoto = req.files.profilePhoto
+        ? req.files.profilePhoto[0].path
+        : null;
+      const coverPhoto = req.files.coverPhoto
+        ? req.files.coverPhoto[0].path
+        : null;
 
-   // Construct data for saving
-   const newUserData = {
-     name,
-     email,
-     phone,
-     designation,
-     password,
-     profilePhoto, 
-     coverPhoto,  
-   };
-      const newUser = await AgencyServices.CreateNewAgencyUserIntoDB(newUserData);
-  
-     
+      // Construct data for saving
+      const newUserData = {
+        name,
+        email,
+        phone,
+        designation,
+        password,
+        profilePhoto,
+        coverPhoto,
+      };
+      const newUser = await AgencyServices.CreateNewAgencyUserIntoDB(
+        newUserData
+      );
+
       res.status(201).json({
         success: true,
         message: "New agency user created successfully",
         data: newUser,
-
       });
     } catch (error) {
-      next(error); 
+      next(error);
     }
-  }
-  
+  },
+
+  async GetAgencyUsers(req, res, next) {
+    const { search, limit, page } = req.query;
+
+    const result = await AgencyServices.GetAgencyUsersFromDB(
+      search,
+      limit,
+      page
+    );
+    res.status(201).json({
+      success: true,
+      message: "Agency users retrieved successfully.",
+      totalRecord: result.total,
+      data: result.users,
+    });
+  },
+  async GetAgencySingleUser(req, res, next) {
+    const {id} = req.query;
+    const result = await AgencyServices.GetAgencySingleUserFromDB(id);
+    res.status(201).json({
+      success: true,
+      message: "Agency user retrieved successfully.",
+      data: result,
+    });
+  },
 };
