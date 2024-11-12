@@ -10,9 +10,9 @@ import CreateRouter from "@CreateRoute";
 const MakeRouter = new CreateRouter("/ui/agent");
 const app = MakeRouter.getApp();
 const upload = getMulter({
-    destination: './uploads', // Define the folder for saving the uploaded files
-    regex: /jpeg|jpg|png/, // Allowed file extensions
-    images: 'jpg, jpeg, png' // This will be used in error messages if the file format is not allowed
+    destination: './uploads', 
+    regex: /jpeg|jpg|png/, 
+    images: 'jpg, jpeg, png' 
   });
 
 app.post("/agent-registration", AgencyController.CreateAgencyWithAdmin);

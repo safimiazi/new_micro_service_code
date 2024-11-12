@@ -23,7 +23,7 @@ export const AgencyServices = {
   },
   async CreateNewAgencyUserIntoDB(data) {
     try {
-      // Check if a user already exists with the same email or phone
+
       const alreadyHaveAgencyUser = await db.User.findOne({
         where: {
           [Op.or]: [
@@ -44,15 +44,17 @@ export const AgencyServices = {
         email: data.email,
         phone: data.phone,
         designation: data.designation,
-        password: data.password, // Remember to hash the password
+        password: data.password, 
         coverPhoto: data.coverPhoto,
         profilePhoto: data.profilePhoto,
+        type: "user",
+        status: "active"
       });
   
       // Return the newly created user
       return newUser;
     } catch (error) {
-      throw new Error("Failed to create new agency user: " + error.message);
+      throw  errorCreate( 401,  "Failed to create new agency user: " + error.message);
     }
   }
 };

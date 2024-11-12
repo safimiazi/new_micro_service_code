@@ -356,25 +356,30 @@ export const AgencyController = {
   async CreateNewAgencyUser(req, res, next) {
     try {
    
-      const { name, email, phone, designation, password, coverPhoto, profilePhoto } = req.body;
-   const profilePic = profilePhoto // Access profile photo path
-      const coverPic = coverPhoto // Access cover photo path
-    console.log("cover", coverPic)
-      // const newUser = await AgencyServices.CreateNewAgencyUserIntoDB({
-      //   name,
-      //   email,
-      //   phone,
-      //   designation,
-      //   password,
-      //   coverPhoto,
-      //   profilePhoto,
-      // });
+      const { name, email, phone, designation, password } = req.body;
+   // Extract file paths
+   const profilePhoto = req.files.profilePhoto ? req.files.profilePhoto[0].path : null;
+   const coverPhoto = req.files.coverPhoto ? req.files.coverPhoto[0].path : null;
+
+   // Construct data for saving
+   const newUserData = {
+     name,
+     email,
+     phone,
+     designation,
+     password,
+     profilePhoto, 
+     coverPhoto,  
+   };
+      const newUser = await AgencyServices.CreateNewAgencyUserIntoDB(newUserData);
   
      
-      // res.status(201).json({
-      //   message: "New agency user created successfully",
-      //   data: newUser,
-      // });
+      res.status(201).json({
+        success: true,
+        message: "New agency user created successfully",
+        data: newUser,
+
+      });
     } catch (error) {
       next(error); 
     }

@@ -16,7 +16,8 @@ export interface UserI
   name: CreationOptional<string>;
   email: string;
   phone: string;
-  photo: string;
+  coverPhoto: string;
+  profilePhoto: string;
   designation: string;
   role: CreationOptional<string>;
   type: CreationOptional<"super" | "user">;
@@ -49,7 +50,11 @@ export function UserModel(sequelize: Sequelize) {
         allowNull: false,
         type: DataTypes.STRING(255),
       },
-      photo: {
+      coverPhoto: {
+        allowNull: true,
+        type: DataTypes.STRING(255),
+      },
+      profilePhoto: {
         allowNull: true,
         type: DataTypes.STRING(255),
       },
