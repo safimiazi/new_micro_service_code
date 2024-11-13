@@ -25,14 +25,26 @@ export const AgencyServices = {
     try {
       const alreadyHaveAgencyUser = await db.User.findOne({
         where: {
+          agency_id: data.agencyId,
           [Op.or]: [{ email: data.email }, { phone: data.phone }],
         },
       });
+
+      const isExistAgency = await db.Agency.findOne({
+        where: {
+          id: data.agencyId
+        }
+      })
+
+      if (!isExistAgency) {
+        throw errorCreate(401, "Agency Not exists, Please Request for agency.");
+      }
 
       // If user already exists, throw an error
       if (alreadyHaveAgencyUser) {
         throw errorCreate(401, "User already exists");
       }
+    
 
       // Create a new user in the database
       const newUser = await db.User.create({
@@ -45,6 +57,8 @@ export const AgencyServices = {
         profilePhoto: data.profilePhoto,
         type: "user",
         status: "active",
+        agency_id: data.agencyId
+        
       });
 
       // Return the newly created user
@@ -57,16 +71,17 @@ export const AgencyServices = {
     }
   },
 
-  async GetAgencyUsersFromDB(search, limit, page) {
+  async GetAgencyUsersFromDB(search, limit, page, agencyId) {
     try {
       const pageSize = parseInt(limit) || 10;
       const pageIndex = parseInt(page) || 0;
-      console.log("first", pageIndex);
+      console.log("first", agencyId);
 
       const searchCondition = search && `%${search.toLowerCase()}%`;
 
       const { count, rows: agencyUsers } = await db.User.findAndCountAll({
         where: {
+          agency_id: agencyId,
           type: "user",
           status: "active",
           email: { [Op.like]: `%${searchCondition}%` },
@@ -79,6 +94,7 @@ export const AgencyServices = {
           "designation",
           "createdAt",
         ],
+      
         order: [["createdAt", "DESC"]],
         limit: pageSize,
         offset: pageIndex * pageSize,
@@ -130,6 +146,16 @@ export const AgencyServices = {
     }
   
     return user;
+  },
+
+
+  async PasswordChangeAgencyUserIntoDB(data) {
+    const isOldPassMatch = await db.User.findOne({
+      where:{
+        password: data.oldPassword
+      }
+    })
+
   }
   
 };

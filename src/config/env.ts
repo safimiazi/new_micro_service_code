@@ -5,6 +5,7 @@ config({ path: `.env.${process.env.NODE_ENV || "development"}.local` });
 export function configureEnv() {
   return cleanEnv(process.env, {
     BASE_URL: str(),
+    DOMAIN_URL: str(),
     NODE_ENV: str(),
     PORT: port({ devDefault: 5000 }),
     SECRET_KEY: str(),

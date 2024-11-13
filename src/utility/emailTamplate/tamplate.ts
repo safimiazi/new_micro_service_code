@@ -1,3 +1,5 @@
+import { ENV } from "@/config/env";
+
 const emailTemplate = async (otp: string, name: string, email : string) => {
   return `
        <!DOCTYPE html>
@@ -81,7 +83,9 @@ const emailTemplate = async (otp: string, name: string, email : string) => {
         <div class="email-body">
             <p>Hi ${name},</p>
             <p>This email confirms that Astha Trip Confirm Your Agency Account.</p>
-            <p>Your validation url: <span  class="url">/auth/registration/otp?email=${email}</span></p>
+  <p>Your validation URL: 
+                    <a href="${ENV.DOMAIN_URL}/auth/registration/otp?email=${email}" target="_blank" class="url">Click here</a>
+                </p></p>
             <p>Your validation OTP: <span  class="email-otp">${otp}</span></p>
             <p>Thanks,<br>
             The Astha Trip Team</p>

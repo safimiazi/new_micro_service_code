@@ -349,6 +349,7 @@ export const AgencyController = {
   async CreateNewAgencyUser(req, res, next) {
     try {
       const { name, email, phone, designation, password } = req.body;
+      const agencyId = req.agent.agency_id;
       // Extract file paths
       const profilePhoto = req.files.profilePhoto
         ? req.files.profilePhoto[0].filename
@@ -357,7 +358,7 @@ export const AgencyController = {
         ? req.files.coverPhoto[0].filename
         : null;
 
-        console.log("profilePhoto", profilePhoto)
+      console.log("profilePhoto", profilePhoto);
 
       // Construct data for saving
       const newUserData = {
@@ -368,6 +369,7 @@ export const AgencyController = {
         password,
         profilePhoto,
         coverPhoto,
+        agencyId,
       };
       const newUser = await AgencyServices.CreateNewAgencyUserIntoDB(
         newUserData
@@ -385,11 +387,12 @@ export const AgencyController = {
 
   async GetAgencyUsers(req, res, next) {
     const { search, limit, page } = req.query;
-
+    const agencyId = req.agent.agency_id;
     const result = await AgencyServices.GetAgencyUsersFromDB(
       search,
       limit,
-      page
+      page,
+      agencyId
     );
     res.status(201).json({
       success: true,
@@ -399,7 +402,7 @@ export const AgencyController = {
     });
   },
   async GetAgencySingleUser(req, res, next) {
-    const {id} = req.query;
+    const { id } = req.query;
     const result = await AgencyServices.GetAgencySingleUserFromDB(id);
     res.status(201).json({
       success: true,
@@ -407,13 +410,12 @@ export const AgencyController = {
       data: result,
     });
   },
- async DeleteAgencySingleUser (req, res, next){
-  const {id} = req.query;
-  const result = await AgencyServices.DeleteAgencySingleUserFromDB(id)
-  
+  async DeleteAgencySingleUser(req, res, next) {
+    const { id } = req.query;
+    const result = await AgencyServices.DeleteAgencySingleUserFromDB(id);
+  },
 
- }
-
-
-  
+  async PasswordChangeAgencyUser(req, res, next) {
+    const result = await AgencyServices.PasswordChangeAgencyUserIntoDB(req.body)
+  },
 };

@@ -29,6 +29,10 @@ app.get("/get-agency-users", isAgency, AgencyController.GetAgencyUsers)
 app.get("/get-agency-single-user", isAgency, AgencyController.GetAgencySingleUser)
 app.get("/get-agency-single-user", isAgency, AgencyController.DeleteAgencySingleUser)
 
+// password change of agency user:
+app.post("/password-change-agency-user",isAgency, AgencyController.PasswordChangeAgencyUser)
+
+
 // authentication
 app.post("/login", AgencyUserController.Login);
 //
