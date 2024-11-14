@@ -418,10 +418,11 @@ export const AgencyController = {
 
   async PasswordChangeAgencyUser(req, res, next) {
     try {
-
       // Call the service function to change the password
-      const result = await AgencyServices.PasswordChangeAgencyUserIntoDB(req.body);
-  
+      const result = await AgencyServices.PasswordChangeAgencyUserIntoDB(
+        req.body
+      );
+
       // Send a success response back to the client
       res.status(200).json({
         success: true,
@@ -435,21 +436,25 @@ export const AgencyController = {
 
   async getProfileFiles(req, res, next) {
     const { image } = req.params;
-    const {agent} = req;
+    const { agent } = req;
     const User = await db.User.findOne({
-      where:{
-        agency_id:agent.agency_id,
-        [Op.or]:{
-          profilePhoto:image,
-          coverPhoto:image
-        }
-      }
-    })
-    if(!User){
-      throw errorCreate(404, "Image not found !")
+      where: {
+        agency_id: agent.agency_id,
+        [Op.or]: {
+          profilePhoto: image,
+          coverPhoto: image,
+        },
+      },
+    });
+    if (!User) {
+      throw errorCreate(404, "Image not found !");
     }
-    const filePath = path.join(__dirname, "../../", "privet_assets/agent_profile", image);
+    const filePath = path.join(
+      __dirname,
+      "../../",
+      "privet_assets/agent_profile",
+      image
+    );
     res.sendFile(filePath);
-  }
-
+  },
 };
