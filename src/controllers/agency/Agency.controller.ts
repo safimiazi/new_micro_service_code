@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
 import { ENV } from "@/config/env";
 import emailRejectTemplate from "@/utility/emailTamplate/emailRejectTemplate";
+import path from "path";
 interface CreateAgencyRequestBody {
   address: string;
   email: string;
@@ -322,13 +323,13 @@ export const AgencyController = {
 
       // Set cookies for authentication and session tracking
       res.setHeader("Set-Cookie", [
-        cookie.serialize("login", token, {
+        cookie.serialize("c_c_date", token, {
           maxAge: 86400, // 1 day in seconds
           sameSite: "strict",
           path: "/",
           httpOnly: true,
         }),
-        cookie.serialize("session", userData.session, {
+        cookie.serialize("time_c", userData.session, {
           maxAge: 86400, // 1 day in seconds
           sameSite: "strict",
           path: "/",
@@ -416,6 +417,39 @@ export const AgencyController = {
   },
 
   async PasswordChangeAgencyUser(req, res, next) {
-    const result = await AgencyServices.PasswordChangeAgencyUserIntoDB(req.body)
+    try {
+
+      // Call the service function to change the password
+      const result = await AgencyServices.PasswordChangeAgencyUserIntoDB(req.body);
+  
+      // Send a success response back to the client
+      res.status(200).json({
+        success: true,
+        message: result.message,
+      });
+    } catch (error) {
+      // Pass error to the error-handling middleware
+      next(error);
+    }
   },
+
+  async getProfileFiles(req, res, next) {
+    const { image } = req.params;
+    const {agent} = req;
+    const User = await db.User.findOne({
+      where:{
+        agency_id:agent.agency_id,
+        [Op.or]:{
+          profilePhoto:image,
+          coverPhoto:image
+        }
+      }
+    })
+    if(!User){
+      throw errorCreate(404, "Image not found !")
+    }
+    const filePath = path.join(__dirname, "../../", "privet_assets/agent_profile", image);
+    res.sendFile(filePath);
+  }
+
 };

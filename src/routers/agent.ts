@@ -1,3 +1,4 @@
+import path from "path";
 import { AdministrationController } from "@/controllers/Administration/Administration.controller";
 import { AgencyController } from "@/controllers/agency/Agency.controller";
 import { AgencyUserController } from "@/controllers/agency/AgencyUser.controller";
@@ -6,11 +7,13 @@ import { isAgency } from "@/middleware/auth/isAgent";
 import getMulter from "@/middleware/multer/multer";
 import CreateRouter from "@CreateRoute";
 
+const Destination = path.join(__dirname, "..", 'privet_assets/agent_profile')
+
 // create registration route
 const MakeRouter = new CreateRouter("/ui/agent");
 const app = MakeRouter.getApp();
 const upload = getMulter({
-    destination: './uploads', 
+    destination: Destination, 
     regex: /jpeg|jpg|png/, 
     images: 'jpg, jpeg, png' 
   });
@@ -19,6 +22,8 @@ app.post("/agent-registration", AgencyController.CreateAgencyWithAdmin);
 app.post("/otp-validation", AgencyController.otpValidation);
 app.post("/agent-request-handel", AgencyController.ApproveAgency);
 app.post("/set-agent-password", AgencyController.SetAgencyPassword)
+
+
 app.post("/agent-login", AgencyController.AgencyLogin)
 app.get("/login-agent", isAgency, AdministrationController.getAgent);
 app.post("/create-agency-new-user", isAgency,  upload.fields([

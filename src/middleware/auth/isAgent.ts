@@ -3,12 +3,9 @@ import AuthService from "@/service/auth/auth.service";
  export const isAgency = async (req, res, next) => {
 
     try {
-        const {login, session} = req.cookies;
-        const user = await AuthService.agentCookieValidator(login, session)
-
+        const {c_c_date, time_c} = req.cookies;
+        const user = await AuthService.agentCookieValidator(c_c_date, time_c)
         const jsonUser  = user.toJSON();
-        console.log("session", jsonUser)
-
         delete jsonUser.session;
         req.agent = jsonUser;
         next()

@@ -156,6 +156,12 @@ const AuthService = {
             session: session,
           },
         },
+        include:[
+          {
+            model:db.Agency,
+            as: 'agency', 
+          }
+        ],
         attributes: {
           exclude: ["password"],
         },

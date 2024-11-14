@@ -56,14 +56,15 @@ Administration.belongsTo<AdministrationI, AgencyI>(Agency, {
 Agency.hasMany<AgencyI, UserI>(User, {
   foreignKey: "agency_id",
   onDelete: "SET NULL",
-  as: "agency",
+  as: "user",
 });
 
 User.belongsTo<UserI, AgencyI>(Agency, {
   foreignKey: "agency_id",
   onDelete: "SET NULL",
-  as: "user",
+  as: "agency",
 });
+
 
 export const db = {
   sequelize,
