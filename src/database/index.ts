@@ -109,4 +109,6 @@ export const db = {
   Agency,
   User,
   LoiAgency,
+  AgentBalance,
+  AgencyBalance,
 } as const;
