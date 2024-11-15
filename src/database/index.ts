@@ -70,34 +70,27 @@ User.belongsTo<UserI, AgencyI>(Agency, {
 });
 
 // agency - balance
-
 Agency.hasOne(AgencyBalance, {
   foreignKey: "agency_id",
   onDelete: "CASCADE",
 });
-
 AgencyBalance.belongsTo(Agency, {
   foreignKey: "agency_id",
   onDelete: "SET NULL",
 });
-
 // agent - balance - agency
-
 Agency.hasMany(AgentBalance, {
   foreignKey: "agency_id",
   onDelete: "CASCADE",
 });
-
 AgentBalance.belongsTo(Agency, {
   foreignKey: "agency_id",
   onDelete: "SET NULL",
 });
-
 User.hasOne(AgentBalance, {
   foreignKey: "user_id",
   onDelete: "CASCADE",
 });
-
 AgentBalance.belongsTo(User, {
   foreignKey: "user_id",
   onDelete: "SET NULL",
