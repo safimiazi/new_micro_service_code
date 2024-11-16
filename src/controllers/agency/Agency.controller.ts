@@ -3,13 +3,13 @@ import { errorCreate } from "@/middleware/errorHandler";
 import { AgencyServices } from "@/service/agency/Agency";
 import { AgencyUserService } from "@/service/agency/AgencyUser";
 import SendEmail from "@/utility/email/Connection";
-import emailTemplate from "@/utility/emailTamplate/tamplate";
+import EmailTemplate from "@/utility/EmailTemplate/Template";
 import { Op } from "sequelize";
 import cookie from "cookie";
 import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
 import { ENV } from "@/config/env";
-import emailRejectTemplate from "@/utility/emailTamplate/emailRejectTemplate";
+import emailRejectTemplate from "@/utility/EmailTemplate/emailRejectTemplate";
 import path from "path";
 interface CreateAgencyRequestBody {
   address: string;
@@ -97,6 +97,19 @@ export const AgencyController = {
         status: "non_verify",
         type: "super",
         agency_id: newAgency.id,
+      });
+
+      const SelectBalanceConfiguration = await db.AgencyBalance.create({
+        agency_id: newAgency.id,
+        balance: "0",
+        rate: "0",
+        type: "prepaid",
+      });
+
+      const CreateAgentBalanceConfiguration = await db.AgentBalance.create({
+        agency_id: newAgency.id,
+        balance: "0",
+        user_id: newSuperAdmin.id,
       });
 
       res.send({
@@ -197,7 +210,6 @@ export const AgencyController = {
   async ApproveAgency(req, res, next) {
     try {
       const { id, status } = req.body;
-      console.log("🚀 ~ ApproveAgency ~ Status:", status);
       const Agency = await db.Agency.findOne({
         where: {
           id: id,
@@ -226,7 +238,7 @@ export const AgencyController = {
           to: User.toJSON().email,
           bcc: [],
           attachments: [],
-          html: await emailTemplate(
+          html: await EmailTemplate(
             otp,
             Agency.toJSON().name,
             Agency.toJSON().email

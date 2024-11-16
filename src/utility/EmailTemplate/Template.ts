@@ -1,6 +1,6 @@
 import { ENV } from "@/config/env";
 
-const emailTemplate = async (otp: string, name: string, email : string) => {
+const EmailTemplate = async (otp: string, name: string, email: string) => {
   return `
        <!DOCTYPE html>
 <html lang="en">
@@ -122,4 +122,4 @@ const emailTemplate = async (otp: string, name: string, email : string) => {
     `;
 };
 
-export default emailTemplate;
+export default EmailTemplate;
