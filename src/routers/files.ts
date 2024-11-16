@@ -15,5 +15,6 @@ const app = MakeRouter.getApp();
 
 // agent-profile
 app.get("/agent-profile/:image", isAgency, AgencyController.getProfileFiles);
+app.get("/get-agency-profile/:image/:id" , AgencyController.getAgencyProfileFiles);
 
 export default MakeRouter;

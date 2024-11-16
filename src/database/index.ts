@@ -10,6 +10,7 @@ const LogQuery = false;
 
 const sequelize = new Sequelize({
   dialect: "mysql",
+
   host: ENV.DATABASE_HOST,
   port: ENV.DATABASE_PORT,
   database: ENV.DATABASE_NAME,

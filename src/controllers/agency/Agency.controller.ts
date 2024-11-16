@@ -9,6 +9,8 @@ import cookie from "cookie";
 import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
 import { ENV } from "@/config/env";
+import fs from "fs"
+
 import emailRejectTemplate from "@/utility/emailTamplate/emailRejectTemplate";
 import path from "path";
 interface CreateAgencyRequestBody {
@@ -457,4 +459,163 @@ export const AgencyController = {
     );
     res.sendFile(filePath);
   },
+
+  async UpdateAgencyProfile (req, res, next) {
+    try {
+      // Extract data from request body
+      const { agencyId, name, email, phone, nid, address, status } = req.body;
+      console.log("Received Agency ID:", agencyId);
+  
+      // Get the admin from the request (assumed to be authenticated)
+      const admin = req.admin;
+  
+      // Extract file paths for photos
+      const profilePhoto = req.files.profilePhoto ? req.files.profilePhoto[0].filename : null;
+      const coverPhoto = req.files.coverPhoto ? req.files.coverPhoto[0].filename : null;
+  
+      // Check if admin exists in the database
+      const isAdmin = await db.Administration.findOne({
+        where: {
+          id: admin.id,
+        },
+      });
+  
+      const isJsonAdmin = isAdmin ? isAdmin.toJSON() : null;
+  
+      if (!isJsonAdmin) {
+        return res.status(404).json({
+          success: false,
+          message: "You are not authorized as an admin to update the agency profile.",
+        });
+      }
+  
+      // Check admin's authorization (super admin and active status)
+      if (isJsonAdmin.type !== "super" || isJsonAdmin.status !== "active") {
+        return res.status(401).json({
+          success: false,
+          message: "Admin is not authorized to update agency profile.",
+        });
+      }
+  
+      // Update the agency profile in the database
+      const result = await db.Agency.update(
+        {
+          name,
+          email,
+          phone,
+          address,
+          nid,
+          status,
+          profilePhoto, // Update profile photo if provided
+          coverPhoto,   // Update cover photo if provided
+        },
+        {
+          where: {
+            id: agencyId,
+          },
+        }
+      );
+  
+      if (result[0] === 1) {
+        return res.status(200).json({
+          success: true,
+          message: "Agency profile updated successfully.",
+        });
+      } else {
+        return res.status(400).json({
+          success: false,
+          message: "Agency profile update failed. Please check the provided details.",
+        });
+      }
+  
+    } catch (error) {
+      console.error("Error in updating agency profile:", error);
+  
+      // Pass error to the error-handling middleware
+      next(error); // Call next() to handle the error in a centralized error handler
+    }
+  },
+
+  async GetSingleAgency(req, res, next) {
+    try {
+      const { id } = req.query;
+  console.log("first", id)
+      // Ensure ID is provided
+      if (!id) {
+        return res.status(400).json({
+          success: false,
+          message: "Agency ID is required.",
+        });
+      }
+  
+      const result = await db.Agency.findOne({
+        where: { id }, // Sequelize automatically resolves shorthand like this
+      });
+  
+      // Check if an agency was found
+      if (!result) {
+        return res.status(404).json({
+          success: false,
+          message: "Agency not found.",
+        });
+      }
+  
+      // Send the agency data in response
+      res.status(200).json({
+        success: true,
+        data: result,
+        message: "Agency data retrieved successfully.",
+      });
+    } catch (error) {
+      console.error("Error fetching agency data:", error);
+  
+      // Send a generic error response
+      res.status(500).json({
+        success: false,
+        message: "An error occurred while retrieving the agency data.",
+        error: error.message, // Include error message for debugging
+      });
+    }
+  },
+
+
+async getAgencyProfileFiles(req, res, next) {
+  try {
+    const { image, id } = req.params;
+
+    // Find user by ID with the profile or cover photo matching the image parameter
+    const User = await db.Agency.findOne({
+      where: {
+        id: id,
+        [Op.or]: {
+          profilePhoto: image,
+          coverPhoto: image,
+        },
+      },
+    });
+
+    if (!User) {
+      return res.status(404).json({ message: "Image not found!" });
+    }
+
+    // Construct the full path to the image file
+    const filePath = path.join(
+      __dirname,
+      "../../privet_assets/agent_profile", // Adjust the path based on your project structure
+      image
+    );
+
+    // Check if the file exists before sending
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({ message: "File not found on server!" });
+    }
+
+    // Send the file as a response
+    res.sendFile(filePath);
+  } catch (error) {
+    next(error); // Pass errors to the error-handling middleware
+  }
+}
+
+ 
 };

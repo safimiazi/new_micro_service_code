@@ -15,7 +15,8 @@ export interface AgencyI
   email: string;
   nid: string;
   phone: string;
-  logo: string;
+  profilePhoto: string;
+  coverPhoto: string;
   address: string;
   status: "active" | "deactivated" | "block" | "non_verify";
   ref_admin_id?: ForeignKey<string>;
@@ -41,7 +42,11 @@ export function AgencyModel(sequelize: Sequelize) {
       allowNull: false,
       type: DataTypes.STRING(255),
     },
-    logo: {
+    profilePhoto: {
+      allowNull: true,
+      type: DataTypes.STRING(255),
+    },
+    coverPhoto: {
       allowNull: true,
       type: DataTypes.STRING(255),
     },
