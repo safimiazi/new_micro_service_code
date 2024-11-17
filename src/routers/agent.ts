@@ -36,15 +36,25 @@ app.get("/get-agency-single-user", isAgency, AgencyController.DeleteAgencySingle
 
 // password change of agency user:
 app.post("/password-change-agency-user",isAgency, AgencyController.PasswordChangeAgencyUser)
+app.post("/agency-pass-change-by-agency",isAgency, AgencyController.AgencyPassChangeByAgency)
 
 // agency profile update:
 app.post("/agency-profile-update", IsAdmin, upload.fields([
   { name: 'profilePhoto', maxCount: 1 }, 
   { name: 'coverPhoto', maxCount: 1 } 
 ]), AgencyController.UpdateAgencyProfile)
+app.post("/agency-profile-photo-update", isAgency, upload.fields([
+  { name: 'profilePhoto', maxCount: 1 }
+   
+]), AgencyController.agencyProfilePhotoUpdate)
+app.post("/agency-cover-photo-update", isAgency, upload.fields([
+  { name: 'coverPhoto', maxCount: 1 }
+   
+]), AgencyController.agencyCoverPhotoUpdate)
 
 // get single agency:
 app.get("/get-single-agency", IsAdmin, AgencyController.GetSingleAgency)
+app.get("/get-agency-profile-info", isAgency, AgencyController.getAgencyProfileInfo)
 // authentication
 app.post("/login", AgencyUserController.Login);
 //

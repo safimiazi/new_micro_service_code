@@ -10,7 +10,6 @@ import AuthService from "@/service/auth/auth.service";
         req.agent = jsonUser;
         next()
     } catch (error) {
-        console.log("error", error)
         res.status(401).send(error)
     }
 }

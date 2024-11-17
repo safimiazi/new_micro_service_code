@@ -14,6 +14,7 @@ import fs from "fs";
 
 import path from "path";
 import emailRejectTemplate from "@/utility/EmailTemplate/emailRejectTemplate";
+import { compare } from "@/utility/encryption";
 interface CreateAgencyRequestBody {
   address: string;
   email: string;
@@ -402,29 +403,45 @@ export const AgencyController = {
   },
 
   async GetAgencyUsers(req, res, next) {
-    const { search, limit, page } = req.query;
-    const agencyId = req.agent.agency_id;
-    const result = await AgencyServices.GetAgencyUsersFromDB(
-      search,
-      limit,
-      page,
-      agencyId
-    );
-    res.status(201).json({
-      success: true,
-      message: "Agency users retrieved successfully.",
-      totalRecord: result.total,
-      data: result.users,
-    });
+    try {
+      const { search, limit, page } = req.query;
+      const agency = req.agent;
+      if (agency.type === "user") {
+        throw errorCreate(401, "You are not permitted to get the data!");
+      }
+      const agencyId = req.agent.agency_id;
+      const result = await AgencyServices.GetAgencyUsersFromDB(
+        search,
+        limit,
+        page,
+        agencyId
+      );
+      res.status(201).json({
+        success: true,
+        message: "Agency users retrieved successfully.",
+        totalRecord: result.total,
+        data: result.users,
+      });
+    } catch (error) {
+      next(error);
+    }
   },
   async GetAgencySingleUser(req, res, next) {
-    const { id } = req.query;
-    const result = await AgencyServices.GetAgencySingleUserFromDB(id);
-    res.status(201).json({
-      success: true,
-      message: "Agency user retrieved successfully.",
-      data: result,
-    });
+    try {
+      const { id } = req.query;
+      const agency = req.agent;
+      if(agency.type === "user"){
+        throw errorCreate(401, "Your are not permitted to get the data")
+      }
+      const result = await AgencyServices.GetAgencySingleUserFromDB(id);
+      res.status(201).json({
+        success: true,
+        message: "Agency user retrieved successfully.",
+        data: result,
+      });
+    } catch (error) {
+      next(error);
+    }
   },
   async DeleteAgencySingleUser(req, res, next) {
     const { id } = req.query;
@@ -624,6 +641,234 @@ export const AgencyController = {
       res.sendFile(filePath);
     } catch (error) {
       next(error); // Pass errors to the error-handling middleware
+    }
+  },
+
+  async agencyProfilePhotoUpdate(req, res, next) {
+    try {
+      const agencyData = req.agent;
+
+      // Extract profile photo filename
+      const profilePhoto = req.files.profilePhoto
+        ? req.files.profilePhoto[0].filename
+        : null;
+
+      // Validate user existence
+      const isExistUser = await db.Agency.findOne({
+        where: {
+          id: agencyData?.agency.id,
+        },
+      });
+
+      if (!isExistUser) {
+        throw errorCreate(401, "Agency not found!");
+      }
+
+      if (isExistUser.status !== "active") {
+        throw errorCreate(401, "Agency not active!");
+      }
+
+      // Update user profile photo
+      const result = await db.Agency.update(
+        { profilePhoto: profilePhoto }, // Correctly structured update data
+        {
+          where: {
+            id: agencyData?.agency.id,
+          },
+        }
+      );
+
+      // Return success response
+      return res.status(200).json({
+        message: "Profile photo updated successfully",
+        profilePhoto,
+        updatedRows: result,
+      });
+    } catch (error) {
+      console.error("Error updating profile photo:", error);
+      return next(error);
+    }
+  },
+  async agencyCoverPhotoUpdate(req, res, next) {
+    try {
+      const agencyData = req.agent;
+
+      // Extract profile photo filename
+      const coverPhoto = req.files.coverPhoto
+        ? req.files.coverPhoto[0].filename
+        : null;
+
+      // Validate user existence
+      const isExistAgency = await db.Agency.findOne({
+        where: {
+          id: agencyData?.agency?.id,
+        },
+      });
+
+      if (!isExistAgency) {
+        throw errorCreate(401, "Agency not found!");
+      }
+
+      if (isExistAgency.status !== "active") {
+        throw errorCreate(401, "Agency not active!");
+      }
+
+      // Update user profile photo
+      const result = await db.Agency.update(
+        { coverPhoto: coverPhoto }, // Correctly structured update data
+        {
+          where: {
+            id: agencyData?.agency?.id,
+          },
+        }
+      );
+
+      // Return success response
+      return res.status(200).json({
+        message: "Cover photo updated successfully",
+        coverPhoto,
+        updatedRows: result,
+      });
+    } catch (error) {
+      console.error("Error updating Cover photo:", error);
+      return next(error);
+    }
+  },
+
+  async getAgencyProfileAndCoverPhoto(req, res, next) {
+    try {
+      const agency = req.agent;
+      const { image } = req.params;
+
+      console.log("image", image);
+
+      // Find user by ID with the profile or cover photo matching the image parameter
+      const User = await db.Agency.findOne({
+        where: {
+          id: agency?.agency?.id,
+          [Op.or]: {
+            profilePhoto: image,
+            coverPhoto: image,
+          },
+        },
+      });
+
+      if (!User) {
+        return res.status(404).json({ message: "Image not found!" });
+      }
+
+      // Construct the full path to the image file
+      const filePath = path.join(
+        __dirname,
+        "../../privet_assets/agent_profile", // Adjust the path based on your project structure
+        image
+      );
+
+      // Check if the file exists before sending
+      if (!fs.existsSync(filePath)) {
+        return res.status(404).json({ message: "File not found on server!" });
+      }
+
+      // Send the file as a response
+      res.sendFile(filePath);
+    } catch (error) {
+      next(error); // Pass errors to the error-handling middleware
+    }
+  },
+
+  async getAgencyProfileInfo(req, res, next) {
+    try {
+      const agency = req.agent;
+      console.log("agency", agency)
+      // Fetch agency profile information
+      const result = await db.Agency.findOne({
+        where: {
+          id: agency.agency.id,
+        },
+        attributes: {
+          exclude: ["password", "otp", "session"], // Exclude sensitive fields
+        },
+      });
+
+      // Check if the agency exists
+      if (!result) {
+        return res.status(404).json({
+          success: false,
+          message: "Agency profile not found",
+        });
+      }
+
+      // Return agency profile data
+      return res.status(200).json({
+        success: true,
+        message: "Agency profile fetched successfully",
+        data: result,
+      });
+    } catch (error) {
+      console.error("Error fetching agency profile:", error);
+
+      // Pass error to error-handling middleware
+      next(error);
+    }
+  },
+
+  async AgencyPassChangeByAgency(req, res, next) {
+    try {
+      // Extract agent (agency) and passwords from the request body
+      const agency = req.agent;
+      const { oldPassword, confirmPassword } = req.body;
+
+      // Check if the user exists in the database
+      const isExistUser = await db.User.findOne({
+        where: { id: agency.id },
+        attributes: ["id", "type", "status", "password"],
+      });
+
+      // If the user doesn't exist, throw an error
+      if (!isExistUser) {
+        throw errorCreate(404, "Agency user not found");
+      }
+
+      // Convert user data to JSON
+      const jsonUser = isExistUser.toJSON();
+
+      // Check if the user is a super user, if not, they are not permitted to change the password
+      if (jsonUser.type !== "super") {
+        throw errorCreate(401, "You are not permitted to change password");
+      }
+
+      // Check if the user's account status is 'active', else deny password change
+      if (jsonUser.status !== "active") {
+        throw errorCreate(401, "You are not active");
+      }
+      console.log(jsonUser.password);
+
+      // Validate that the old password matches the one in the database
+      if (!compare(oldPassword, jsonUser?.password)) {
+        throw errorCreate(401, "Old password does not match");
+      }
+
+      // Optional: Check if the new password (confirmPassword) is provided and matches the expected criteria
+      if (!confirmPassword) {
+        throw errorCreate(400, "New password is required");
+      }
+
+      if (oldPassword === confirmPassword) {
+        throw errorCreate(
+          400,
+          "New password cannot be the same as the old password"
+        );
+      }
+      await db.User.update(
+        { password: confirmPassword },
+        { where: { id: agency.id } }
+      );
+
+      // Respond with a success message
+      res.status(200).json({ message: "Password changed successfully" });
+    } catch (error) {
+      // Handle errors appropriately
+      next(error);
     }
   },
 };

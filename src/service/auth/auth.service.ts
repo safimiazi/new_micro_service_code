@@ -144,7 +144,6 @@ const AuthService = {
           session: string;
           email: string;
         };
-        console.log("userDecode", userDecode);
       } catch (error) {
         throw errorCreate(401, "Invalid User please login");
       }

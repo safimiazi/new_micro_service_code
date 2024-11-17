@@ -3,6 +3,8 @@ import { AgencyI } from "@/database/model/Agency";
 import { errorCreate } from "@/middleware/errorHandler";
 import { compare } from "@/utility/encryption";
 import { Op } from "sequelize";
+import { hash } from "@/utility/encryption";
+
 interface AddAgency {
   name: string;
   email: string;
@@ -152,34 +154,39 @@ export const AgencyServices = {
 
   async PasswordChangeAgencyUserIntoDB(data) {
     try {
-     console.log(data)
-      // Retrieve the user by ID
+      // Retrieve the user by ID with necessary attributes
       const user = await db.User.findOne({
-        where: { id: data.id },
+        where: { 
+          id: data.id,
+          type: "user" // Ensure it's an agency user
+        },
+        attributes: ["id", "status", "password"]
       });
-  
+
       // Check if user exists
       if (!user) {
         throw errorCreate(401, "User does not exist.");
       }
-  
+
       // Check if user is active
       if (user.status !== "active") {
         throw errorCreate(401, "User is not active.");
       }
-  
+
       // Compare old password with the current password
-      const isMatch = await compare(data.oldPassword, user.toJSON().password);
+      const isMatch = await compare(data.oldPassword, user.password);
       if (!isMatch) {
         throw errorCreate(401, "Old password is incorrect.");
       }
-  
+
+    
+
+
       // Update the password in the database
       await user.update({ password: data.confirmPassword });
-  
+
       return { message: "Password changed successfully." };
     } catch (error) {
-      // Handle errors appropriately
       throw error;
     }
   }
