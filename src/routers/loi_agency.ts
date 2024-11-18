@@ -58,4 +58,6 @@ app.post(
   LoiAgencyController.createAgency
 );
 
+app.get("/get-all-loi-agency",IsAdmin, LoiAgencyController.GetAll)
+
 export default MakeRouter;

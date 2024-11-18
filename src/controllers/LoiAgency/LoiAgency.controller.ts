@@ -2,6 +2,8 @@ import { db } from "@/database";
 import { errorCreate } from "@/middleware/errorHandler";
 import { LoiAgencyServiceProvider } from "@/service/loiAgency/LoiAgency.service";
 import fs from "fs";
+import path from "path";
+import { Op } from "sequelize";
 export const LoiAgencyController = {
   async createAgency(req, res, next) {
     const files = req.files;
@@ -69,6 +71,48 @@ export const LoiAgencyController = {
       res.send(all);
     } catch (error) {
       next(error);
+    }
+  },
+
+  async getLoiAgencyLogoBannerSillSignature(req, res, next) {
+    try {
+      const { image, id } = req.params;
+
+      console.log("image", image);
+
+      // Find user by ID with the profile or cover photo matching the image parameter
+      const User = await db.LoiAgency.findOne({
+        where: {
+          id: id,
+          [Op.or]: {
+            banner: image,
+            logo: image,
+            signature: image,
+            sill: image,
+          },
+        },
+      });
+
+      if (!User) {
+        return res.status(404).json({ message: "Image not found!" });
+      }
+
+      // Construct the full path to the image file
+      const filePath = path.join(
+        __dirname,
+        "../public/media/docs",
+        image
+      );
+
+      // Check if the file exists before sending
+      if (!fs.existsSync(filePath)) {
+        return res.status(404).json({ message: "File not found on server!" });
+      }
+
+      // Send the file as a response
+      res.sendFile(filePath);
+    } catch (error) {
+      next(error); // Pass errors to the error-handling middleware
     }
   },
 };

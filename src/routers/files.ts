@@ -6,8 +6,8 @@ import IsAdmin from "@/middleware/auth/isAdmin";
 import { isAgency } from "@/middleware/auth/isAgent";
 import getMulter from "@/middleware/multer/multer";
 import CreateRouter from "@CreateRoute";
+import { LoiAgencyController } from "@/controllers/LoiAgency/LoiAgency.controller";
 
-const Destination = path.join(__dirname, "..", 'privet_assets/agent_profile')
 
 // create registration route
 const MakeRouter = new CreateRouter("/files");
@@ -17,5 +17,8 @@ const app = MakeRouter.getApp();
 app.get("/agent-profile/:image", isAgency, AgencyController.getProfileFiles);
 app.get("/get-agency-profile/:image/:id" , AgencyController.getAgencyProfileFiles);
 app.get("/get-agency-profile-cover-photo/:image" , isAgency, AgencyController.getAgencyProfileAndCoverPhoto);
+
+// for show 4 images in edit time
+app.get("/get-loi-agency-images/:image/:id", IsAdmin, LoiAgencyController.getLoiAgencyLogoBannerSillSignature);
 
 export default MakeRouter;
