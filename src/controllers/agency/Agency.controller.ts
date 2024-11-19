@@ -430,8 +430,8 @@ export const AgencyController = {
     try {
       const { id } = req.query;
       const agency = req.agent;
-      if(agency.type === "user"){
-        throw errorCreate(401, "Your are not permitted to get the data")
+      if (agency.type === "user") {
+        throw errorCreate(401, "Your are not permitted to get the data");
       }
       const result = await AgencyServices.GetAgencySingleUserFromDB(id);
       res.status(201).json({
@@ -487,6 +487,23 @@ export const AgencyController = {
       "privet_assets/agent_profile",
       image
     );
+    res.sendFile(filePath);
+  },
+  async AdminSeeAgencyUsersProfile(req, res, next) {
+    const { image } = req.params;
+
+ 
+    const filePath = path.join(
+      __dirname,
+      "../../",
+      "privet_assets/agent_profile",
+      image
+    );
+
+
+    console.log("file", filePath)
+
+
     res.sendFile(filePath);
   },
 
@@ -577,7 +594,15 @@ export const AgencyController = {
       }
 
       const result = await db.Agency.findOne({
-        where: { id }, // Sequelize automatically resolves shorthand like this
+        where: { id },
+        include: {
+          model: db.User,
+          as: "user",
+          where: {
+            type: "user",
+          },
+          required: false,
+        },
       });
 
       // Check if an agency was found
@@ -779,7 +804,7 @@ export const AgencyController = {
   async getAgencyProfileInfo(req, res, next) {
     try {
       const agency = req.agent;
-      console.log("agency", agency)
+      console.log("agency", agency);
       // Fetch agency profile information
       const result = await db.Agency.findOne({
         where: {

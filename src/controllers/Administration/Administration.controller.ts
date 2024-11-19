@@ -25,4 +25,15 @@ export const AdministrationController = {
       next(error);
     }
   },
+
+ async AdminEditAgencyUserProfile(req, res, next){
+  try {
+    const {id} = req.params;
+    const data = req.body;
+    console.log("id", data)
+    res.send(req.body)
+  } catch (error) {
+    
+  }
+ }
 };
