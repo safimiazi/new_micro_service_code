@@ -20,6 +20,6 @@ app.get("/get-agency-profile/:image/:id" , AgencyController.getAgencyProfileFile
 app.get("/get-agency-profile-cover-photo/:image" , isAgency, AgencyController.getAgencyProfileAndCoverPhoto);
 
 // for show 4 images in edit time
-app.get("/get-loi-agency-images/:image/:id", IsAdmin, LoiAgencyController.getLoiAgencyLogoBannerSillSignature);
+app.get("/get-loi-agency-images/:image", IsAdmin, LoiAgencyController.getLoiAgencyLogoBannerSillSignature);
 
 export default MakeRouter;

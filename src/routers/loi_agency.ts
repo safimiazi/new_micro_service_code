@@ -59,5 +59,16 @@ app.post(
 );
 
 app.get("/get-all-loi-agency",IsAdmin, LoiAgencyController.GetAll)
+app.put("/admin-adit-agency-data/:id", IsAdmin,getMulter({
+  destination: destination,
+}).fields([
+  { name: "logo", maxCount: 1 },
+  { name: "banner", maxCount: 1 },
+  { name: "signature", maxCount: 1 },
+  { name: "sill", maxCount: 1 },
+]), LoiAgencyController.AdminEditAgencyMaterial)
+
+app.delete("/delete-loi-agency/:id", IsAdmin, LoiAgencyController.AdminDeleteLoiAgencyMaterial)
+
 
 export default MakeRouter;

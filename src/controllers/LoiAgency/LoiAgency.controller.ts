@@ -76,38 +76,25 @@ export const LoiAgencyController = {
 
   async getLoiAgencyLogoBannerSillSignature(req, res, next) {
     try {
-      const { image, id } = req.params;
+      const { image} = req.params;
 
-      console.log("image", image);
 
-      // Find user by ID with the profile or cover photo matching the image parameter
-      const User = await db.LoiAgency.findOne({
-        where: {
-          id: id,
-          [Op.or]: {
-            banner: image,
-            logo: image,
-            signature: image,
-            sill: image,
-          },
-        },
-      });
-
-      if (!User) {
-        return res.status(404).json({ message: "Image not found!" });
-      }
+   
 
       // Construct the full path to the image file
       const filePath = path.join(
         __dirname,
-        "../public/media/docs",
+        "../../public/media/docs",
         image
       );
+
+      console.log(filePath)
 
       // Check if the file exists before sending
       if (!fs.existsSync(filePath)) {
         return res.status(404).json({ message: "File not found on server!" });
       }
+    
 
       // Send the file as a response
       res.sendFile(filePath);
@@ -115,4 +102,74 @@ export const LoiAgencyController = {
       next(error); // Pass errors to the error-handling middleware
     }
   },
+
+
+  async  AdminEditAgencyMaterial  (req, res, next) {
+    try {
+      // Extract ID from params and fields from req.body
+      const { id } = req.params;
+      const { name, email, address, phone, UEN } = req.body;
+  
+      // Extract file paths if files are uploaded
+      const logo = req.files?.logo?.[0]?.filename || null;
+      const banner = req.files?.banner?.[0]?.filename || null;
+      const signature = req.files?.signature?.[0]?.filename || null;
+      const sill = req.files?.sill?.[0]?.filename || null;
+  
+      // Retrieve the existing record to avoid overwriting with nulls
+      const agency = await db.LoiAgency.findOne({ where: { id } });
+  
+      if (!agency) {
+        return res.status(404).json({ message: "Agency not found" });
+      }
+  
+      // Prepare the update payload, keeping existing values if the new value is null or undefined
+      const updateData = {
+        name: name ?? agency.name,
+        email: email ?? agency.email,
+        address: address ?? agency.address,
+        phone: phone ?? agency.phone,
+        uen: UEN ?? agency.UEN,
+        logo: logo || agency.logo,
+        banner: banner || agency.banner,
+        signature: signature || agency.signature,
+        sill: sill || agency.sill,
+      };
+    
+  
+      // Perform the update
+      const [updated] = await db.LoiAgency.update(updateData, {
+        where: { id },
+      });
+  
+      if (updated) {
+        // Fetch and return the updated record
+        return res.status(200).json({
+          message: "Agency material updated successfully",
+          success: true,
+        });
+      } else {
+        // No rows were affected (shouldn't happen if the record exists)
+        return res.status(400).json({ message: "Update failed" });
+      }
+    } catch (error) {
+      return res.status(500).json({ message: "Internal Server Error", error });
+    }
+  },
+ async AdminDeleteLoiAgencyMaterial  (req, res) {
+    try {
+      const { id } = req.params;
+      const deleted = await db.LoiAgency.destroy({ where: { id } });
+  
+      if (deleted) {
+        return res.status(200).json({ message: "Data deleted successfully." });
+      } else {
+        return res.status(404).json({ message: "Data not found." });
+      }
+    } catch (error) {
+      console.error("Error deleting Data:", error);
+      return res.status(500).json({ message: "Internal server error." });
+    }
+  }
+  
 };
