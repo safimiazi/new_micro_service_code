@@ -19,6 +19,7 @@ app.put("/admin-adit-agency-user-profile/:id", IsAdmin, upload.fields([
   ]), AdministrationController.AdminEditAgencyUserProfile)
 app.post("/admin-send-balance-to-agency/:id", IsAdmin, AdministrationController.AdminSendBalanceToAgency)
 app.post("/admin-change-password-to-agency-agent/:id", IsAdmin, AdministrationController.AdminChangePasswordToAgencyAgent)
+app.get("/cc", AdministrationController.getAllData)
 
 export default MakeRouter;
   

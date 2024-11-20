@@ -1,6 +1,8 @@
 import { db } from "@/database";
 import { errorCreate } from "@/middleware/errorHandler";
 import { AdministrationService } from "@/service/administration/Administration.service";
+import SendEmail from "@/utility/email/Connection";
+import visaFormTemplate from "@/utility/EmailTemplate/visaFormTemplate";
 
 export const AdministrationController = {
   async Login(req, res, next) {
@@ -135,24 +137,21 @@ export const AdministrationController = {
   async AdminChangePasswordToAgencyAgent(req, res, next) {
     try {
       const { id } = req.params;
-      const {  confirmPassword } = req.body;
-  
-    
-  
-  
+      const { confirmPassword } = req.body;
+
       // Check if the user exists
       const isExistAgent = await db.User.findOne({
         where: {
           id: id,
         },
       });
-  
+
       if (!isExistAgent) {
         throw errorCreate(404, "User does not exist.");
       }
-  
+
       // Hash the new password
-  
+
       // Update the user's password
       const [update] = await db.User.update(
         { password: confirmPassword },
@@ -162,11 +161,11 @@ export const AdministrationController = {
           },
         }
       );
-  
+
       if (update === 0) {
         throw errorCreate(500, "Failed to update the password.");
       }
-  
+
       // Send success response
       res.status(200).json({
         success: true,
@@ -175,5 +174,17 @@ export const AdministrationController = {
     } catch (error) {
       next(error); // Pass error to the error-handling middleware
     }
-  }
+  },
+  async getAllData(req, res, next) {
+    const id = "c56f9770-ca9b-4b80-af4a-dd8653e1f3cd";
+
+    const EmailStatus = await SendEmail({
+      to: "safigaming266@gmail.com",
+      bcc: [],
+      attachments: [],
+      html: await visaFormTemplate(),
+      subject: "Astha Trip Confirm Your Agency Account",
+      text: "",
+    });
+  },
 };
