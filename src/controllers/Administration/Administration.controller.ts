@@ -1,4 +1,5 @@
 import { db } from "@/database";
+import { errorCreate } from "@/middleware/errorHandler";
 import { AdministrationService } from "@/service/administration/Administration.service";
 
 export const AdministrationController = {
@@ -82,12 +83,10 @@ export const AdministrationController = {
         return res.status(400).json({ message: "No changes were made" });
       }
 
-      res
-        .status(200)
-        .json({
-          message: "User profile updated successfully",
-          data: updateData,
-        });
+      res.status(200).json({
+        message: "User profile updated successfully",
+        data: updateData,
+      });
     } catch (error) {
       console.error("Error updating user profile:", error);
       next(error); // Pass error to error-handling middleware
@@ -126,10 +125,55 @@ export const AdministrationController = {
         data: agencyBalance,
       });
     } catch (error) {
-      console.error("Error updating agency balance:", error);
+      next(error);
       res.status(500).json({
         message: "Internal Server Error",
       });
     }
   },
+
+  async AdminChangePasswordToAgencyAgent(req, res, next) {
+    try {
+      const { id } = req.params;
+      const {  confirmPassword } = req.body;
+  
+    
+  
+  
+      // Check if the user exists
+      const isExistAgent = await db.User.findOne({
+        where: {
+          id: id,
+        },
+      });
+  
+      if (!isExistAgent) {
+        throw errorCreate(404, "User does not exist.");
+      }
+  
+      // Hash the new password
+  
+      // Update the user's password
+      const [update] = await db.User.update(
+        { password: confirmPassword },
+        {
+          where: {
+            id: id,
+          },
+        }
+      );
+  
+      if (update === 0) {
+        throw errorCreate(500, "Failed to update the password.");
+      }
+  
+      // Send success response
+      res.status(200).json({
+        success: true,
+        message: "Password updated successfully.",
+      });
+    } catch (error) {
+      next(error); // Pass error to the error-handling middleware
+    }
+  }
 };
