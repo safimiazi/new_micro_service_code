@@ -595,14 +595,21 @@ export const AgencyController = {
 
       const result = await db.Agency.findOne({
         where: { id },
-        include: {
-          model: db.User,
-          as: "user",
-          where: {
-            type: "user",
+        include: [
+          {
+            model: db.User,
+            as: "user",
+            
+            where: {
+              type: "user",
+            },
+            required: false,
           },
-          required: false,
-        },
+          {
+            model: db.AgencyBalance,
+          
+          }
+        ]
       });
 
       // Check if an agency was found

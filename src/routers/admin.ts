@@ -17,7 +17,7 @@ app.put("/admin-adit-agency-user-profile/:id", IsAdmin, upload.fields([
     { name: 'profilePhoto', maxCount: 1 }, 
     { name: 'coverPhoto', maxCount: 1 } 
   ]), AdministrationController.AdminEditAgencyUserProfile)
-
+app.post("/admin-send-balance-to-agency/:id", IsAdmin, AdministrationController.AdminSendBalanceToAgency)
 
 export default MakeRouter;
   
