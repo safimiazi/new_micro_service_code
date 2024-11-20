@@ -18,8 +18,10 @@ app.put("/admin-adit-agency-user-profile/:id", IsAdmin, upload.fields([
     { name: 'coverPhoto', maxCount: 1 } 
   ]), AdministrationController.AdminEditAgencyUserProfile)
 app.post("/admin-send-balance-to-agency/:id", IsAdmin, AdministrationController.AdminSendBalanceToAgency)
+app.post("/admin-change-password-to-agency/:id", IsAdmin, AdministrationController.AdminChangePasswordToAgency)
 app.post("/admin-change-password-to-agency-agent/:id", IsAdmin, AdministrationController.AdminChangePasswordToAgencyAgent)
-app.get("/cc", AdministrationController.getAllData)
+app.get("/cc", AdministrationController.example)
+
 
 export default MakeRouter;
   

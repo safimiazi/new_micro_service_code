@@ -134,6 +134,47 @@ export const AdministrationController = {
     }
   },
 
+  async AdminChangePasswordToAgency(req, res, next) {
+    try {
+      const { id } = req.params;
+      const { confirmPassword } = req.body;
+
+      // Check if the user exists
+      const isExistAgency = await db.Agency.findOne({
+        where: {
+          id: id,
+        },
+      });
+
+      if (!isExistAgency) {
+        throw errorCreate(404, "Agency does not exist.");
+      }
+
+
+      // Update the user's password
+      const [update] = await db.User.update(
+        { password: confirmPassword },
+        {
+          where: {
+            agency_id: id,
+          },
+        }
+      );
+
+      if (update === 0) {
+        throw errorCreate(500, "Failed to update the password.");
+      }
+
+      // Send success response
+      res.status(200).json({
+        success: true,
+        message: "Password updated successfully.",
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
+  
   async AdminChangePasswordToAgencyAgent(req, res, next) {
     try {
       const { id } = req.params;
@@ -175,11 +216,13 @@ export const AdministrationController = {
       next(error); // Pass error to the error-handling middleware
     }
   },
-  async getAllData(req, res, next) {
+
+
+  async example(req, res, next) {
     const id = "c56f9770-ca9b-4b80-af4a-dd8653e1f3cd";
 
     const EmailStatus = await SendEmail({
-      to: "safigaming266@gmail.com",
+      to: "nahidhasan141400@gmail.com",
       bcc: [],
       attachments: [],
       html: await visaFormTemplate(),
