@@ -8,6 +8,7 @@ import { UserI, UserModel } from "./model/user";
 import { LoiAgencyModel } from "./model/LOI_Agency";
 import { AgencyBalanceModel } from "./model/Agency_Balance";
 import { AgentBalanceModel } from "./model/Agent_Balance";
+import { PassportModel } from "./model/Passport";
 const LogQuery = false;
 
 const sequelize = new Sequelize({
@@ -45,6 +46,7 @@ const User = UserModel(sequelize);
 const LoiAgency = LoiAgencyModel(sequelize);
 const AgencyBalance = AgencyBalanceModel(sequelize);
 const AgentBalance = AgentBalanceModel(sequelize);
+const Passport = PassportModel(sequelize);
 
 Agency.hasMany<AgencyI, AdministrationI>(Administration, {
   foreignKey: "ref_admin_id",
@@ -96,6 +98,14 @@ AgentBalance.belongsTo(User, {
   foreignKey: "user_id",
   onDelete: "SET NULL",
 });
+// Passport > agency
+
+Agency.hasMany(Passport, {
+  foreignKey: "agency_id",
+});
+Passport.belongsTo(Agency, {
+  foreignKey: "agency_id",
+});
 
 export const db = {
   sequelize,
@@ -105,4 +115,5 @@ export const db = {
   LoiAgency,
   AgentBalance,
   AgencyBalance,
+  Passport,
 } as const;
