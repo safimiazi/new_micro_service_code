@@ -32,6 +32,7 @@ export const AgencyController = {
   ) {
     try {
       const body = req.body;
+      
 
       // check if agency already exists
       const existsAgency = await db.Agency.findOne({

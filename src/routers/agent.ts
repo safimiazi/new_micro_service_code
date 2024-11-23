@@ -58,6 +58,6 @@ app.get("/get-agency-profile-info", isAgency, AgencyController.getAgencyProfileI
 // authentication
 app.post("/login", AgencyUserController.Login);
 //
-app.get("/all-agency", IsAdmin, AgencyController.GetAll);
+ app.get("/all-agency", IsAdmin, AgencyController.GetAll);
 
 export default MakeRouter;

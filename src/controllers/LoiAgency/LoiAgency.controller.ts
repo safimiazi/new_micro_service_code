@@ -156,6 +156,8 @@ export const LoiAgencyController = {
       return res.status(500).json({ message: "Internal Server Error", error });
     }
   },
+
+  
  async AdminDeleteLoiAgencyMaterial  (req, res) {
     try {
       const { id } = req.params;
