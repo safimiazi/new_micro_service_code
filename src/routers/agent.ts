@@ -18,7 +18,11 @@ const upload = getMulter({
     images: 'jpg, jpeg, png' 
   });
 
+  // agency routers:
 app.post("/agent-registration", AgencyController.CreateAgencyWithAdmin);
+
+
+
 app.post("/otp-validation", AgencyController.otpValidation);
 app.post("/agent-request-handel", AgencyController.ApproveAgency);
 app.post("/set-agent-password", AgencyController.SetAgencyPassword)

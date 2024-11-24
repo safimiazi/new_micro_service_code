@@ -25,6 +25,7 @@ interface CreateAgencyRequestBody {
 }
 
 export const AgencyController = {
+  // agency registration request controller function:
   async CreateAgencyWithAdmin(
     req: { body: CreateAgencyRequestBody },
     res,
@@ -32,7 +33,6 @@ export const AgencyController = {
   ) {
     try {
       const body = req.body;
-      
 
       // check if agency already exists
       const existsAgency = await db.Agency.findOne({
@@ -87,7 +87,6 @@ export const AgencyController = {
       });
 
       // create super admin for this account
-
       const newSuperAdmin = await AgencyUserService.CreateNewUser({
         designation: "super admin of " + body.name,
         email: body.email,
@@ -104,22 +103,25 @@ export const AgencyController = {
         agency_id: newAgency.id,
       });
 
-      const SelectBalanceConfiguration = await db.AgencyBalance.create({
+      // SelectBalanceConfiguration
+      await db.AgencyBalance.create({
         agency_id: newAgency.id,
         balance: "0",
         rate: "0",
         type: "prepaid",
       });
 
-      const CreateAgentBalanceConfiguration = await db.AgentBalance.create({
+      // CreateAgentBalanceConfiguration
+      await db.AgentBalance.create({
         agency_id: newAgency.id,
         balance: "0",
         user_id: newSuperAdmin.id,
       });
 
       res.send({
-        userCreated: true,
-        status: "success",
+        success: true,
+        status: 201,
+        message: "Registration Request sent Successfully.",
       });
     } catch (error) {
       next(error);
@@ -215,6 +217,8 @@ export const AgencyController = {
   async ApproveAgency(req, res, next) {
     try {
       const { id, status } = req.body;
+  
+      // Find the agency by ID
       const Agency = await db.Agency.findOne({
         where: {
           id: id,
@@ -223,9 +227,8 @@ export const AgencyController = {
       if (!Agency) {
         throw errorCreate(404, "Agency not found !");
       }
-
-      // UPDATE
-
+  
+      // Find the associated admin user
       const User = await db.User.findOne({
         where: {
           agency_id: Agency.id,
@@ -233,13 +236,16 @@ export const AgencyController = {
         },
       });
       if (!User) {
-        throw errorCreate(404, "Admin User not found !");
+        throw errorCreate(404, "User not found !");
       }
+  
+      // Handle approval logic
       if (status === "approve") {
         // Generate OTP
         const otp = Math.floor(10000 + Math.random() * 90000).toString();
-        // send email
-        const EmailStatus = await SendEmail({
+  
+        // Send approval email
+        await SendEmail({
           to: User.toJSON().email,
           bcc: [],
           attachments: [],
@@ -251,26 +257,22 @@ export const AgencyController = {
           subject: "Astha Trip Confirm Your Agency Account",
           text: "",
         });
-
+  
+        // Update user with the OTP
         await User.update({
           otp: otp,
         });
-
+  
         res.send({
           status: 200,
           approve: true,
-          EmailStatus,
+          message: "Agency approved successfully.",
         });
       }
-
+  
+      // Handle rejection logic
       if (status === "reject") {
-        // status deactivate of user:
-        await User.update({
-          status: "deactivate",
-        });
-        await Agency.update({
-          status: "block",
-        });
+        // Send rejection email
         const EmailStatus = await SendEmail({
           to: User.toJSON().email,
           bcc: [],
@@ -279,17 +281,22 @@ export const AgencyController = {
           subject: "Astha Trip Reject Your Agency Account",
           text: "",
         });
-
+  
+        // Permanently delete the user and agency
+        await User.destroy();
+        await Agency.destroy();
+  
         res.send({
           status: 200,
           reject: true,
-          EmailStatus,
+          message: "Agency rejected successfully.",
         });
       }
     } catch (error) {
       next(error);
     }
   },
+  
 
   async SetAgencyPassword(req, res, next) {
     try {
@@ -376,7 +383,6 @@ export const AgencyController = {
         ? req.files.coverPhoto[0].filename
         : null;
 
-      console.log("profilePhoto", profilePhoto);
 
       // Construct data for saving
       const newUserData = {
@@ -493,7 +499,6 @@ export const AgencyController = {
   async AdminSeeAgencyUsersProfile(req, res, next) {
     const { image } = req.params;
 
- 
     const filePath = path.join(
       __dirname,
       "../../",
@@ -501,9 +506,7 @@ export const AgencyController = {
       image
     );
 
-
-    console.log("file", filePath)
-
+    console.log("file", filePath);
 
     res.sendFile(filePath);
   },
@@ -600,7 +603,7 @@ export const AgencyController = {
           {
             model: db.User,
             as: "user",
-            
+
             where: {
               type: "user",
             },
@@ -608,9 +611,8 @@ export const AgencyController = {
           },
           {
             model: db.AgencyBalance,
-          
-          }
-        ]
+          },
+        ],
       });
 
       // Check if an agency was found
@@ -898,7 +900,7 @@ export const AgencyController = {
       );
 
       // Respond with a success message
-      res.status(200).json({ message: "Password changed successfully" });
+      res.status(200).json({ status: 201, success: true, message: "Password changed successfully" });
     } catch (error) {
       // Handle errors appropriately
       next(error);

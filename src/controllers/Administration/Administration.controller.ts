@@ -2,7 +2,7 @@ import { db } from "@/database";
 import { errorCreate } from "@/middleware/errorHandler";
 import { AdministrationService } from "@/service/administration/Administration.service";
 import SendEmail from "@/utility/email/Connection";
-import visaFormTemplate from "@/utility/EmailTemplate/visaFormTemplate";
+import visaFormTemplate from "@/utility/EmailTemplate/VisaFormTemplate";
 
 export const AdministrationController = {
   async Login(req, res, next) {

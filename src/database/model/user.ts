@@ -22,7 +22,7 @@ export interface UserI
   role: CreationOptional<string>;
   type: CreationOptional<"super" | "user">;
   password: string;
-  status: "active" | "deactivate" | "non_verify" | "request";
+  status: "active" | "deactivate" | "non_verify" | "request" ;
   session: string;
   otp: string;
   agency_id?: ForeignKey<string>;

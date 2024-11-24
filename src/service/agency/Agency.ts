@@ -3,7 +3,6 @@ import { AgencyI } from "@/database/model/Agency";
 import { errorCreate } from "@/middleware/errorHandler";
 import { compare } from "@/utility/encryption";
 import { Op } from "sequelize";
-import { hash } from "@/utility/encryption";
 
 interface AddAgency {
   name: string;
@@ -16,6 +15,9 @@ interface AddAgency {
 }
 
 export const AgencyServices = {
+
+
+  // Agency Service functions:
   async createNewAgency(data: AddAgency): Promise<AgencyI> {
     try {
       const NewAgency = await db.Agency.create(data);
@@ -24,6 +26,9 @@ export const AgencyServices = {
       throw error;
     }
   },
+
+
+  
   async CreateNewAgencyUserIntoDB(data) {
     try {
       const alreadyHaveAgencyUser = await db.User.findOne({
