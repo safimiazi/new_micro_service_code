@@ -98,18 +98,18 @@ export const AdministrationController = {
   async AdminSendBalanceToAgency(req, res, next) {
     try {
       const { id } = req.params;
-      const { balance, rate, type } = req.body;
+      const { balance, rate } = req.body;
 
-      if (!balance || !rate || !type) {
+      if (!balance || !rate ) {
         return res.status(400).json({
-          message: "Balance, rate and type are required.",
+          message: "Balance and rate are required.",
         });
       }
 
       // Find or create the agency balance
       const [agencyBalance] = await db.AgencyBalance.findOrCreate({
         where: { agency_id: id },
-        defaults: { balance, rate, type },
+        defaults: { balance, rate },
       });
 
       if (!agencyBalance.isNewRecord) {
@@ -118,13 +118,46 @@ export const AdministrationController = {
           Number(agencyBalance.balance) + Number(balance)
         );
         agencyBalance.rate = rate || agencyBalance.rate;
-        agencyBalance.type = type;
         await agencyBalance.save();
       }
 
       res.status(200).json({
         message: "Agency balance updated successfully.",
         data: agencyBalance,
+      });
+    } catch (error) {
+      next(error);
+      res.status(500).json({
+        message: "Internal Server Error",
+      });
+    }
+  },
+  async AdminSetPaymentTypeToAgency(req, res, next) {
+    try {
+      const { id } = req.params;
+      const { type } = req.body;
+
+      if (!type) {
+        return res.status(400).json({
+          message: "Payment type are required.",
+        });
+      }
+
+      // Find or create the agency balance
+      const [agencyPaymentType] = await db.AgencyBalance.findOrCreate({
+        where: { agency_id: id },
+        defaults: { type },
+      });
+
+      if (!agencyPaymentType.isNewRecord) {
+        // Update the existing balance
+        agencyPaymentType.type = type
+        await agencyPaymentType.save();
+      }
+
+      res.status(200).json({
+        message: "Agency Payment type updated successfully.",
+        data: agencyPaymentType,
       });
     } catch (error) {
       next(error);
