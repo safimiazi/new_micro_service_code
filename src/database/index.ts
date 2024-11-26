@@ -9,6 +9,7 @@ import { LoiAgencyModel } from "./model/LOI_Agency";
 import { AgencyBalanceModel } from "./model/Agency_Balance";
 import { AgentBalanceModel } from "./model/Agent_Balance";
 import { PassportModel } from "./model/Passport";
+import { ServiceModel } from "./model/Service";
 const LogQuery = false;
 
 const sequelize = new Sequelize({
@@ -47,6 +48,7 @@ const LoiAgency = LoiAgencyModel(sequelize);
 const AgencyBalance = AgencyBalanceModel(sequelize);
 const AgentBalance = AgentBalanceModel(sequelize);
 const Passport = PassportModel(sequelize);
+const service = ServiceModel(sequelize)
 
 Agency.hasMany<AgencyI, AdministrationI>(Administration, {
   foreignKey: "ref_admin_id",
@@ -116,4 +118,5 @@ export const db = {
   AgentBalance,
   AgencyBalance,
   Passport,
+  service
 } as const;

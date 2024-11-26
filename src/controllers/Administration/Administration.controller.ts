@@ -100,7 +100,7 @@ export const AdministrationController = {
       const { id } = req.params;
       const { balance, rate } = req.body;
 
-      if (!balance || !rate ) {
+      if (!balance || !rate) {
         return res.status(400).json({
           message: "Balance and rate are required.",
         });
@@ -151,7 +151,7 @@ export const AdministrationController = {
 
       if (!agencyPaymentType.isNewRecord) {
         // Update the existing balance
-        agencyPaymentType.type = type
+        agencyPaymentType.type = type;
         await agencyPaymentType.save();
       }
 
@@ -183,7 +183,6 @@ export const AdministrationController = {
         throw errorCreate(404, "Agency does not exist.");
       }
 
-
       // Update the user's password
       const [update] = await db.User.update(
         { password: confirmPassword },
@@ -207,7 +206,7 @@ export const AdministrationController = {
       next(error);
     }
   },
-  
+
   async AdminChangePasswordToAgencyAgent(req, res, next) {
     try {
       const { id } = req.params;
@@ -250,19 +249,44 @@ export const AdministrationController = {
     }
   },
 
-  async AdminAddNewService (req, res, next){
+  async AdminAddNewService(req, res, next) {
     try {
+      // Extract data from the request body
       const data = req.body;
-      const admin = req.admin;
-      console.log("is Admin", admin);
-      console.log("data", data)
-      
+
+      // Validate the input data (optional, based on your needs)
+      if (
+        !data.serviceName ||
+        !data.from ||
+        !data.to ||
+        !data.vehicleType ||
+        !data.serviceRate ||
+        !data.seatNumber
+      ) {
+        return res.status(400).json({
+          success: false,
+          message:
+            "All fields are required",
+        });
+      }
+
+      // Create the new service record
+      const result = await db.service.create(data);
+
+      // Convert the result to JSON
+      const jsonResult = result.toJSON();
+
+      // Send a successful response
+      res.status(201).json({
+        success: true,
+        message: "Service added successfully.",
+        data: jsonResult,
+      });
     } catch (error) {
-      next(error)
+      // Pass the error to the next middleware for centralized error handling
+      next(error);
     }
   },
-
-
   async example(req, res, next) {
     const id = "c56f9770-ca9b-4b80-af4a-dd8653e1f3cd";
 
