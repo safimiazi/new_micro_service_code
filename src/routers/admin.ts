@@ -21,6 +21,7 @@ app.post("/admin-send-balance-to-agency/:id", IsAdmin, AdministrationController.
 app.post("/admin-set-payment-type-to-agency/:id", IsAdmin, AdministrationController.AdminSetPaymentTypeToAgency)
 app.post("/admin-change-password-to-agency/:id", IsAdmin, AdministrationController.AdminChangePasswordToAgency)
 app.post("/admin-change-password-to-agency-agent/:id", IsAdmin, AdministrationController.AdminChangePasswordToAgencyAgent)
+app.post("/admin-add-new-service", IsAdmin, AdministrationController.AdminAddNewService)
 app.get("/cc", AdministrationController.example)
 
 
