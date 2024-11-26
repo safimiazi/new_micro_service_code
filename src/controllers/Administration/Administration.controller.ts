@@ -250,6 +250,18 @@ export const AdministrationController = {
     }
   },
 
+  async AdminAddNewService (req, res, next){
+    try {
+      const data = req.body;
+      const admin = req.admin;
+      console.log("is Admin", admin);
+      console.log("data", data)
+      
+    } catch (error) {
+      next(error)
+    }
+  },
+
 
   async example(req, res, next) {
     const id = "c56f9770-ca9b-4b80-af4a-dd8653e1f3cd";
