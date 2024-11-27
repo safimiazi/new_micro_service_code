@@ -3,6 +3,7 @@ import { errorCreate } from "@/middleware/errorHandler";
 import { AdministrationService } from "@/service/administration/Administration.service";
 import SendEmail from "@/utility/email/Connection";
 import visaFormTemplate from "@/utility/EmailTemplate/VisaFormTemplate";
+import { Op } from "sequelize";
 
 export const AdministrationController = {
   async Login(req, res, next) {
@@ -265,8 +266,7 @@ export const AdministrationController = {
       ) {
         return res.status(400).json({
           success: false,
-          message:
-            "All fields are required",
+          message: "All fields are required",
         });
       }
 
@@ -287,6 +287,85 @@ export const AdministrationController = {
       next(error);
     }
   },
+
+  async AdminGetAllService(req, res, next) {
+    try {
+      // Get pagination parameters from query string
+      const page = parseInt(req.query.page as string) || 1;
+      const limit = parseInt(req.query.limit as string) || 10;
+      const offset = (page - 1) * limit;
+
+      // Get search parameters
+      const search = req.query.search as string;
+
+      // Build where clause based on search
+      let whereClause = {};
+      if (search) {
+        whereClause = {
+          [Op.or]: [
+            { serviceName: { [Op.like]: `%${search}%` } },
+            { vehicleType: { [Op.like]: `%${search}%` } },
+          ],
+        };
+      }
+
+      // Get total count and paginated services with search
+      const { count, rows: services } = await db.service.findAndCountAll({
+        where: whereClause,
+        limit,
+        offset,
+        order: [["createdAt", "DESC"]],
+      });
+
+      // Send response
+      res.status(200).json({
+        success: true,
+        data: services,
+        pagination: {
+          totalItems: count,
+          currentPage: page,
+          itemsPerPage: limit,
+          totalPages: Math.ceil(count / limit),
+        },
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  async AdminDeleteService(req, res, next) {
+    try {
+      const { id } = req.params;
+
+      // Check if id exists
+      if (!id) {
+        return res.status(400).json({
+          success: false,
+          message: "Service ID is required",
+        });
+      }
+
+      // Find and delete the service
+      const service = await db.service.findByPk(id);
+
+      if (!service) {
+        return res.status(404).json({
+          success: false,
+          message: "Service not found",
+        });
+      }
+
+      await service.destroy();
+
+      res.status(200).json({
+        success: true,
+        message: "Service deleted successfully",
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
+
   async example(req, res, next) {
     const id = "c56f9770-ca9b-4b80-af4a-dd8653e1f3cd";
 
