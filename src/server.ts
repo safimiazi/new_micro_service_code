@@ -1,6 +1,7 @@
 import app from "@/app";
 import http from "http";
 import { Socket, Server as SocketIOServer } from "socket.io";
+import { startConsumer } from "./consumers/emailConsumer";
 // import { InitTelegramBot } from "./utility/telegram/telegram_bot";
 
 export const Server = http.createServer(app);

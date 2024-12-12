@@ -92,6 +92,7 @@ app.use(Express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(Express.static(path.join(__dirname, "../public")));
 
+
 // Schedule the task using cron (Every Friday and Monday at 11 PM)
 cron.schedule("0 1 * * *", () => {
   console.log(
