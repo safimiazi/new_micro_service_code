@@ -1,0 +1,5536 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form 14A Design</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box; /* Ensures padding and border are included in total width/height */
+      }
+
+      @media print {
+        @page {
+          size: A4;
+          margin: auto;
+          width: 100%;
+        }
+
+        body {
+          font-size: 12pt; /* Adjust font size as needed */
+          line-height: 1.5; /* Adjust line height for readability */
+          font-family: Arial, sans-serif;
+        }
+      }
+
+      body {
+        width: 210mm; /* A4 width */
+
+        font-family: "Times New Roman", Times, serif;
+        font-size: 12px;
+        box-shadow: 0 0 10px black;
+      }
+      .container {
+        width: 100%;
+        padding: 20px;
+        margin: 0 auto;
+      }
+      .header-flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap; /* Allow wrapping to prevent overflow */
+      }
+      .left-header {
+        margin-top: 50px;
+        font-weight: bold;
+      }
+      .header-p {
+        margin-top: 16px;
+      }
+      .header {
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+      .entry-visa {
+        position: absolute;
+        text-align: center;
+        font-weight: bold;
+        margin: 0;
+        top: 152px; /* Adjust as necessary */
+        left: 50%; /* Center horizontally */
+        transform: translateX(-50%); /*Offset by half its width*/
+      }
+      .photo-box {
+        width: 130px; /* 2 inches */
+        height: 150px; /* 2 inches */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid black;
+        text-align: center;
+        font-size: 12px;
+        padding: 15px;
+        margin-bottom: 3px;
+      }
+
+      th {
+        font-weight: bold;
+        padding: 10px; /* Padding for table header */
+      }
+
+      .checkbox-group {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .checkbox-group input {
+        margin-right: 5px;
+      }
+      .grid-div-parent {
+        display: grid;
+        grid-template-columns: repeat(25, 1fr);
+        row-gap: 2px;
+      }
+
+      /* grid div start */
+      .grid-div-start {
+        width: 22px;
+        height: 22px;
+        border-left: 1px solid black;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        text-align: center;
+        line-height: 22px;
+      }
+
+      .grid-div-middle {
+        width: 22px;
+        height: 22px;
+        border-top: 1px solid black;
+        border-left: 1px solid black;
+        border-bottom: 1px solid black;
+        text-align: center;
+        line-height: 22px;
+      }
+      .grid-div-last {
+        width: 22px;
+        height: 22px;
+        border-top: 1px solid black;
+        border-left: 1px solid black;
+        border-bottom: 1px solid black;
+        border-right: 1px solid black;
+        text-align: center;
+        line-height: 22px;
+      }
+
+      .grid-div-parent-2 {
+        display: grid;
+        grid-template-columns: repeat(25, 1fr);
+      }
+      .grid-div-start-2 {
+        width: 22px;
+        height: 22px;
+        border-left: 1px solid black;
+        border-bottom: 1px solid black;
+        text-align: center;
+        line-height: 22px;
+      }
+
+      .grid-div-middle-2 {
+        width: 22px;
+        height: 22px;
+        border-left: 1px solid black;
+        border-bottom: 1px solid black;
+        text-align: center;
+        line-height: 22px;
+      }
+      .grid-div-last-2 {
+        width: 22px;
+        height: 22px;
+        border-left: 1px solid black;
+        border-bottom: 1px solid black;
+        border-right: 1px solid black;
+        text-align: center;
+        line-height: 22px;
+      }
+
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+        border-top: 1px solid black;
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+      }
+
+      .table-head {
+        font-weight: bold;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        text-align: left;
+        padding: 5px 0;
+        margin: 20px 0;
+        padding-left: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header-flex">
+        <div class="left-header">
+          Notes: <br />
+          <p class="header-p">* Check the box where appropriate</p>
+        </div>
+        <div class="header">
+          FORM 14A <br />
+          IMMIGRATION ACT 1959 [SECTION – 55(1)] <br />
+        </div>
+        <div class="photo-box">
+          Affix a recent Passport-size photograph here
+        </div>
+      </div>
+      <div class="entry-visa">APPLICATION FOR ENTRY VISA</div>
+
+      <table class="table">
+        <tr>
+          <th class="table-head">PART I: PARTICULARS OF APPLICANT</th>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: start;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%" class="input-box-title">
+              Name: <br /><span style="font-size: 11px; font-style: italic"
+                >(Full name as shown in travel documents)</span
+              >
+            </div>
+            <div class="grid-div-parent">
+              <div class="grid-div-start"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-last"></div>
+              <div class="grid-div-start"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-last"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: start;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%" class="input-box-title">Alias:</div>
+            <div class="grid-div-parent">
+              <div class="grid-div-start"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-last"></div>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <table
+        style="
+          width: 100%;
+          border-collapse: collapse;
+          border-top: 1px solid black;
+          border-left: 1px solid black;
+          border-right: 1px solid black;
+        "
+      >
+        <tr style="padding: 2px">
+          <td style="border-right: 1px solid black">
+            <div
+              style="
+                padding: 2px;
+                display: flex;
+                gap: 10px;
+                margin-bottom: 10px;
+              "
+            >
+              <div>Date of Birth:</div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  margin-top: 15px;
+                  justify-content: start;
+                "
+              >
+                <div style="position: relative">
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  >
+                    0
+                  </div>
+                  <div
+                    style="
+                      position: absolute;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      -top: 2px;
+                      font-size: 10px;
+                      font-style: italic;
+                    "
+                  >
+                    D
+                  </div>
+                </div>
+                <div style="position: relative">
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      border-left: 0px;
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  >
+                    5
+                  </div>
+                  <div
+                    style="
+                      position: absolute;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      -top: 2px;
+                      font-size: 10px;
+                      font-style: italic;
+                    "
+                  >
+                    D
+                  </div>
+                </div>
+                <div>---</div>
+                <div style="position: relative">
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  >
+                    0
+                  </div>
+                  <div
+                    style="
+                      position: absolute;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      -top: 2px;
+                      font-size: 10px;
+                      font-style: italic;
+                    "
+                  >
+                    M
+                  </div>
+                </div>
+                <div style="position: relative">
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      border-left: 0px;
+
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  >
+                    7
+                  </div>
+                  <div
+                    style="
+                      position: absolute;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      -top: 2px;
+                      font-size: 10px;
+                      font-style: italic;
+                    "
+                  >
+                    M
+                  </div>
+                </div>
+                <div>---</div>
+                <div style="position: relative">
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  >
+                    1
+                  </div>
+                  <div
+                    style="
+                      position: absolute;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      -top: 2px;
+                      font-size: 10px;
+                      font-style: italic;
+                    "
+                  >
+                    Y
+                  </div>
+                </div>
+                <div style="position: relative">
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      border-left: 0px;
+
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  >
+                    9
+                  </div>
+                  <div
+                    style="
+                      position: absolute;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      -top: 2px;
+                      font-size: 10px;
+                      font-style: italic;
+                    "
+                  >
+                    Y
+                  </div>
+                </div>
+                <div style="position: relative">
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      border-left: 0px;
+
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  >
+                    7
+                  </div>
+                  <div
+                    style="
+                      position: absolute;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      -top: 2px;
+                      font-size: 10px;
+                      font-style: italic;
+                    "
+                  >
+                    Y
+                  </div>
+                </div>
+                <div style="position: relative">
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      text-align: center;
+                      line-height: 20px;
+                      border-left: 0px;
+                    "
+                  >
+                    8
+                  </div>
+                  <div
+                    style="
+                      position: absolute;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      -top: 2px;
+                      font-size: 10px;
+                      font-style: italic;
+                    "
+                  >
+                    Y
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td style="border-right: 1px solid black; padding: 2px">
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                justify-content: start;
+              "
+            >
+              <div style="margin-bottom: 30px">Sex:*</div>
+              <div style="margin-top: 10px">
+                <div class="checkbox-group">
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    <div>Male</div>
+                  </div>
+                  <div
+                    style="
+                      height: 10px;
+                      width: 10px;
+                      border: 1px solid black;
+                      padding: 1px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="height: 100%; width: 100%; background-color: black"
+                    ></div>
+                  </div>
+                  <div>Female</div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <table
+        style="
+          width: 100%;
+          border-collapse: collapse;
+          border-top: 1px solid black;
+          border-left: 1px solid black;
+          border-right: 1px solid black;
+          border-bottom: 1px solid black;
+        "
+      >
+        <tr style="padding: 2px">
+          <td style="border-right: 1px solid black">
+            <div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  gap: 15px;
+                  padding: 5px;
+                "
+              >
+                <div>Marital Status:*</div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: start;
+                    gap: 3px;
+                  "
+                >
+                  <div
+                    style="
+                      height: 10px;
+                      width: 10px;
+                      border: 1px solid black;
+                      padding: 1px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="height: 100%; width: 100%; background-color: black"
+                    ></div>
+                  </div>
+                  Single
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: start;
+                    gap: 3px;
+                  "
+                >
+                  <div
+                    style="
+                      height: 10px;
+                      width: 10px;
+                      border: 1px solid black;
+                      padding: 1px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="height: 100%; width: 100%; background-color: black"
+                    ></div>
+                  </div>
+                  Married
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: start;
+                    gap: 3px;
+                  "
+                >
+                  <div
+                    style="
+                      height: 10px;
+                      width: 10px;
+                      border: 1px solid black;
+                      padding: 1px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="height: 100%; width: 100%; background-color: black"
+                    ></div>
+                  </div>
+                  Separated
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: start;
+                    gap: 3px;
+                  "
+                >
+                  <div
+                    style="
+                      height: 10px;
+                      width: 10px;
+                      border: 1px solid black;
+                      padding: 1px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="height: 100%; width: 100%; background-color: black"
+                    ></div>
+                  </div>
+                  Divorced
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: start;
+                    gap: 3px;
+                  "
+                >
+                  <div
+                    style="
+                      height: 10px;
+                      width: 10px;
+                      border: 1px solid black;
+                      padding: 1px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="height: 100%; width: 100%; background-color: black"
+                    ></div>
+                  </div>
+                  Widowed
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: start;
+                    gap: 3px;
+                  "
+                >
+                  <div
+                    style="
+                      height: 10px;
+                      width: 10px;
+                      border: 1px solid black;
+                      padding: 1px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="height: 100%; width: 100%; background-color: black"
+                    ></div>
+                  </div>
+                  Cohabited
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: start;
+                    gap: 3px;
+                  "
+                >
+                  <div
+                    style="
+                      height: 10px;
+                      width: 10px;
+                      border: 1px solid black;
+                      padding: 1px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="height: 100%; width: 100%; background-color: black"
+                    ></div>
+                  </div>
+                  Customary
+                </div>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  padding: 5px;
+                  gap: 20px;
+                  align-items: start;
+                  justify-content: space-between;
+                "
+              >
+                <div>Nationality/Citizenship of Spouse:*</div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      margin-bottom: 4px;
+                      gap: 20px;
+                      align-items: center;
+                      justify-content: space-between;
+                    "
+                  >
+                    <div style="width: 190px">
+                      <div
+                        style="
+                          display: flex;
+                          align-items: center;
+                          justify-content: start;
+                          gap: 3px;
+                        "
+                      >
+                        <div
+                          style="
+                            height: 10px;
+                            width: 10px;
+                            border: 1px solid black;
+                            padding: 1px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                          "
+                        >
+                          <div
+                            style="
+                              height: 100%;
+                              width: 100%;
+                              background-color: black;
+                            "
+                          ></div>
+                        </div>
+                        Singapore Citizen
+                      </div>
+                    </div>
+                    <div
+                      style="
+                        display: flex;
+                        flex: 1;
+                        align-items: center;
+                        justify-content: start;
+                      "
+                    >
+                      <div style="margin-right: 5px">NRIC No.</div>
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      ></div>
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      ></div>
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      ></div>
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      ></div>
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      ></div>
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      ></div>
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      ></div>
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      ></div>
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      ></div>
+                    </div>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      margin-bottom: 4px;
+                      gap: 20px;
+                      align-items: center;
+                      justify-content: space-between;
+                    "
+                  >
+                    <div style="width: 190px">
+                      <div
+                        style="
+                          display: flex;
+                          align-items: center;
+                          justify-content: start;
+                          gap: 3px;
+                        "
+                      >
+                        <div
+                          style="
+                            height: 10px;
+                            width: 10px;
+                            border: 1px solid black;
+                            padding: 1px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                          "
+                        >
+                          <div
+                            style="
+                              height: 100%;
+                              width: 100%;
+                              background-color: black;
+                            "
+                          ></div>
+                        </div>
+                        Singapore Permanent Resident
+                      </div>
+                    </div>
+                    <div
+                      style="
+                        display: flex;
+                        flex: 1;
+                        align-items: center;
+                        justify-content: start;
+                      "
+                    >
+                      <div style="margin-right: 5px">NRIC No.</div>
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      ></div>
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      ></div>
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      ></div>
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      ></div>
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      ></div>
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      ></div>
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      ></div>
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      ></div>
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      ></div>
+                    </div>
+                  </div>
+
+                  <div style="display: flex; gap: 10px">
+                    <div>
+                      <div
+                        style="
+                          display: flex;
+                          align-items: center;
+                          justify-content: start;
+                          gap: 3px;
+                        "
+                      >
+                        <div
+                          style="
+                            height: 10px;
+                            width: 10px;
+                            border: 1px solid black;
+                            padding: 1px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                          "
+                        >
+                          <div
+                            style="
+                              height: 100%;
+                              width: 100%;
+                              background-color: black;
+                            "
+                          ></div>
+                        </div>
+                        Others (Please Specify):
+                      </div>
+                    </div>
+                    <div style="flex: 1; border-bottom: 1px solid black">
+                      Bangladesh
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <table
+        style="
+          width: 100%;
+          border-collapse: collapse;
+          border-left: 1px solid black;
+          border-right: 1px solid black;
+          border-bottom: 1px solid black;
+        "
+      >
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: start;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%" class="input-box-title">
+              Country/Place of Birth:
+            </div>
+            <div class="grid-div-parent">
+              <div class="grid-div-start"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-last"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: start;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%" class="input-box-title">
+              State/Province of Birth:
+            </div>
+            <div class="grid-div-parent">
+              <div class="grid-div-start"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-last"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: start;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%" class="input-box-title">
+              Race:
+              <span style="font-size: x-small; font-style: italic"
+                >(e.g. Malay, Indian, Chinese, Caucasian, etc)</span
+              >
+            </div>
+            <div class="grid-div-parent">
+              <div class="grid-div-start"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-last"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: start;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%" class="input-box-title">
+              Nationality/Citizenship:
+            </div>
+            <div class="grid-div-parent">
+              <div class="grid-div-start"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-last"></div>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <table
+        style="
+          width: 100%;
+          border-collapse: collapse;
+          border-left: 1px solid black;
+          border-right: 1px solid black;
+          border-bottom: 1px solid black;
+        "
+      >
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: start;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%" class="input-box-title">
+              Type of Travel Document Held:*
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: start;
+                align-items: start;
+                flex-wrap: wrap; /* Allow boxes to wrap */
+                gap: 2px;
+                flex: 1;
+              "
+              class="input-box"
+            >
+              <div
+                style="
+                  display: flex;
+                  gap: 5px;
+                  align-items: center;
+                  justify-content: space-between;
+                "
+              >
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    International Passport
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    Diplomatic Passport
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    Official Passport
+                  </div>
+                </div>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  gap: 5px;
+                  align-items: center;
+                  justify-content: space-between;
+                "
+              >
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    Service Passport
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    Document of Identity
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    Certificate of Identity
+                  </div>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 5px">
+                <div style="display: flex; align-items: center">
+                  <div>
+                    <div
+                      style="
+                        display: flex;
+                        align-items: center;
+                        justify-content: start;
+                        gap: 3px;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 10px;
+                          width: 10px;
+                          border: 1px solid black;
+                          padding: 1px;
+                          display: flex;
+                          justify-content: center;
+                          align-items: center;
+                        "
+                      >
+                        <div
+                          style="
+                            height: 100%;
+                            width: 100%;
+                            background-color: black;
+                          "
+                        ></div>
+                      </div>
+                      Others (please specify)
+                    </div>
+                  </div>
+                </div>
+                <div
+                  style="border-bottom: 1px solid black; flex: 1; min-width: 0"
+                >
+                  Bangladesh
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: start;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%" class="input-box-title">
+              Travel Document No.:
+            </div>
+            <div class="grid-div-parent">
+              <div class="grid-div-start"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-last"></div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div
+              style="
+                display: flex;
+                padding: 5px;
+                align-items: center;
+                justify-content: start;
+              "
+            >
+              <div
+                style="
+                  padding: 5px;
+                  vertical-align: top;
+                  display: flex;
+                  align-items: center;
+                  justify-content: start;
+                  gap: 30px;
+                "
+              >
+                <div style="width: 20%" class="input-box-title">
+                  Travel Document Issued Date:
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: start;
+                    align-items: start;
+                    flex-wrap: wrap; /* Allow boxes to wrap */
+                    gap: 2px;
+                    flex: 1;
+                  "
+                  class="input-box"
+                >
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                    "
+                  >
+                    <div style="position: relative">
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      >
+                        0
+                      </div>
+                      <div
+                        style="
+                          position: absolute;
+                          left: 50%;
+                          transform: translateX(-50%);
+                          -top: 2px;
+                          font-size: 10px;
+                          font-style: italic;
+                        "
+                      >
+                        D
+                      </div>
+                    </div>
+                    <div style="position: relative">
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      >
+                        5
+                      </div>
+                      <div
+                        style="
+                          position: absolute;
+                          left: 50%;
+                          transform: translateX(-50%);
+                          -top: 2px;
+                          font-size: 10px;
+                          font-style: italic;
+                        "
+                      >
+                        D
+                      </div>
+                    </div>
+                    <div>---</div>
+                    <div style="position: relative">
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      >
+                        0
+                      </div>
+                      <div
+                        style="
+                          position: absolute;
+                          left: 50%;
+                          transform: translateX(-50%);
+                          -top: 2px;
+                          font-size: 10px;
+                          font-style: italic;
+                        "
+                      >
+                        M
+                      </div>
+                    </div>
+                    <div style="position: relative">
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      >
+                        7
+                      </div>
+                      <div
+                        style="
+                          position: absolute;
+                          left: 50%;
+                          transform: translateX(-50%);
+                          -top: 2px;
+                          font-size: 10px;
+                          font-style: italic;
+                        "
+                      >
+                        M
+                      </div>
+                    </div>
+                    <div>---</div>
+                    <div style="position: relative">
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      >
+                        1
+                      </div>
+                      <div
+                        style="
+                          position: absolute;
+                          left: 50%;
+                          transform: translateX(-50%);
+                          -top: 2px;
+                          font-size: 10px;
+                          font-style: italic;
+                        "
+                      >
+                        Y
+                      </div>
+                    </div>
+                    <div style="position: relative">
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      >
+                        9
+                      </div>
+                      <div
+                        style="
+                          position: absolute;
+                          left: 50%;
+                          transform: translateX(-50%);
+                          -top: 2px;
+                          font-size: 10px;
+                          font-style: italic;
+                        "
+                      >
+                        Y
+                      </div>
+                    </div>
+                    <div style="position: relative">
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      >
+                        7
+                      </div>
+                      <div
+                        style="
+                          position: absolute;
+                          left: 50%;
+                          transform: translateX(-50%);
+                          -top: 2px;
+                          font-size: 10px;
+                          font-style: italic;
+                        "
+                      >
+                        Y
+                      </div>
+                    </div>
+                    <div style="position: relative">
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          text-align: center;
+                          line-height: 20px;
+                          border-left: 0px;
+                        "
+                      >
+                        8
+                      </div>
+                      <div
+                        style="
+                          position: absolute;
+                          left: 50%;
+                          transform: translateX(-50%);
+                          -top: 2px;
+                          font-size: 10px;
+                          font-style: italic;
+                        "
+                      >
+                        Y
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                style="
+                  padding: 5px;
+                  vertical-align: top;
+                  display: flex;
+                  align-items: center;
+                  justify-content: start;
+                  flex: 1;
+                "
+              >
+                <div style="width: 20%" class="input-box-title">
+                  Expiry Date:
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: start;
+                    align-items: start;
+                    flex-wrap: wrap; /* Allow boxes to wrap */
+                    gap: 2px;
+                  "
+                  class="input-box"
+                >
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                    "
+                  >
+                    <div style="position: relative">
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      >
+                        0
+                      </div>
+                      <div
+                        style="
+                          position: absolute;
+                          left: 50%;
+                          transform: translateX(-50%);
+                          -top: 2px;
+                          font-size: 10px;
+                          font-style: italic;
+                        "
+                      >
+                        D
+                      </div>
+                    </div>
+                    <div style="position: relative">
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      >
+                        5
+                      </div>
+                      <div
+                        style="
+                          position: absolute;
+                          left: 50%;
+                          transform: translateX(-50%);
+                          -top: 2px;
+                          font-size: 10px;
+                          font-style: italic;
+                        "
+                      >
+                        D
+                      </div>
+                    </div>
+                    <div>---</div>
+                    <div style="position: relative">
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      >
+                        0
+                      </div>
+                      <div
+                        style="
+                          position: absolute;
+                          left: 50%;
+                          transform: translateX(-50%);
+                          -top: 2px;
+                          font-size: 10px;
+                          font-style: italic;
+                        "
+                      >
+                        M
+                      </div>
+                    </div>
+                    <div style="position: relative">
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      >
+                        7
+                      </div>
+                      <div
+                        style="
+                          position: absolute;
+                          left: 50%;
+                          transform: translateX(-50%);
+                          -top: 2px;
+                          font-size: 10px;
+                          font-style: italic;
+                        "
+                      >
+                        M
+                      </div>
+                    </div>
+                    <div>---</div>
+                    <div style="position: relative">
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      >
+                        1
+                      </div>
+                      <div
+                        style="
+                          position: absolute;
+                          left: 50%;
+                          transform: translateX(-50%);
+                          -top: 2px;
+                          font-size: 10px;
+                          font-style: italic;
+                        "
+                      >
+                        Y
+                      </div>
+                    </div>
+                    <div style="position: relative">
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      >
+                        9
+                      </div>
+                      <div
+                        style="
+                          position: absolute;
+                          left: 50%;
+                          transform: translateX(-50%);
+                          -top: 2px;
+                          font-size: 10px;
+                          font-style: italic;
+                        "
+                      >
+                        Y
+                      </div>
+                    </div>
+                    <div style="position: relative">
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          border-left: 0px;
+
+                          text-align: center;
+                          line-height: 20px;
+                        "
+                      >
+                        7
+                      </div>
+                      <div
+                        style="
+                          position: absolute;
+                          left: 50%;
+                          transform: translateX(-50%);
+                          -top: 2px;
+                          font-size: 10px;
+                          font-style: italic;
+                        "
+                      >
+                        Y
+                      </div>
+                    </div>
+                    <div style="position: relative">
+                      <div
+                        style="
+                          width: 20px;
+                          height: 20px;
+                          border: 1px solid black;
+                          text-align: center;
+                          line-height: 20px;
+                          border-left: 0px;
+                        "
+                      >
+                        8
+                      </div>
+                      <div
+                        style="
+                          position: absolute;
+                          left: 50%;
+                          transform: translateX(-50%);
+                          -top: 2px;
+                          font-size: 10px;
+                          font-style: italic;
+                        "
+                      >
+                        Y
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: start;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%" class="input-box-title">
+              Country/Place of Issue:
+            </div>
+            <div class="grid-div-parent">
+              <div class="grid-div-start"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-last"></div>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <table
+        style="
+          width: 100%;
+          border-collapse: collapse;
+          border-left: 1px solid black;
+          border-right: 1px solid black;
+          border-bottom: 1px solid black;
+        "
+      >
+        <tr>
+          <td
+            style="
+              padding: 5px;
+
+              padding-top: 20px;
+              padding-bottom: 20px;
+              vertical-align: top;
+              display: flex;
+              align-items: start;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%" class="input-box-title">
+              <div style="position: relative">
+                <div>PRC ID Number</div>
+                <div
+                  style="
+                    position: absolute;
+                    bottom: 15px;
+                    font-size: xx-small;
+                    font-style: italic;
+                  "
+                >
+                  For Chinese Nationals Only
+                </div>
+              </div>
+            </div>
+            <div class="grid-div-parent">
+              <div class="grid-div-start"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-last"></div>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <table
+        style="
+          width: 100%;
+          margin-top: 10px;
+          border-collapse: collapse;
+          border-top: 1px solid black;
+          border-left: 1px solid black;
+          border-right: 1px solid black;
+          border-bottom: 1px solid black;
+        "
+      >
+        <tr>
+          <th
+            style="
+              font-weight: bold;
+              border-top: 1px solid black;
+              text-align: left;
+              margin-left: 30px;
+              position: relative;
+              top: -10px;
+              right: 5px;
+              font-size: 11px;
+              font-style: italic;
+            "
+          >
+            Address in Country/Place of Origin/Residence
+          </th>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%; font-size: 11px" class="input-box-title">
+              Country/Place of Origin/ Residence:
+            </div>
+            <div class="grid-div-parent">
+              <div class="grid-div-start"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-last"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%; font-size: 11px" class="input-box-title">
+              Division/State/Province of Origin/Residence:
+            </div>
+            <div class="grid-div-parent">
+              <div class="grid-div-start"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-last"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%; font-size: 11px" class="input-box-title">
+              Prefecture of Origin/ Residence:
+            </div>
+            <div class="grid-div-parent">
+              <div class="grid-div-start"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-last"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%; font-size: 11px" class="input-box-title">
+              County/District of Origin/ Residence:
+            </div>
+            <div class="grid-div-parent">
+              <div class="grid-div-start"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-last"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 10px;
+            "
+          >
+            <div
+              style="width: fit-content; font-size: 11px"
+              class="input-box-title"
+            >
+              Address:
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: start;
+                align-items: start;
+                flex-wrap: wrap; /* Allow boxes to wrap */
+                gap: 2px;
+                flex: 1;
+              "
+              class="input-box"
+            >
+              <div
+                style="flex: 1; border-bottom: 2px solid black; font-size: 11px"
+              >
+                9 NO KALIBARI ROAD, JHALOKATI, JHALAKATI SADAR - 8400, JHALAKATI
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <table
+        style="
+          margin-top: 10px;
+          width: 100%;
+          border-collapse: collapse;
+          border-top: 1px solid black;
+          border-left: 1px solid black;
+          border-right: 1px solid black;
+          border-bottom: 1px solid black;
+        "
+      >
+        <tr>
+          <th
+            style="
+              font-weight: bold;
+              border-top: 1px solid black;
+              border-bottom: 1px solid black;
+              text-align: left;
+              padding: 5px 0;
+              margin: 20px 0;
+              padding-left: 5px;
+              font-size: 11px;
+            "
+          >
+            PART II – OTHER DETAILS
+          </th>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%; font-size: 11px" class="input-box-title">
+              Email Address:
+            </div>
+            <div class="grid-div-parent">
+              <div class="grid-div-start"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-last"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%; font-size: 11px" class="input-box-title">
+              Contact Number:
+            </div>
+            <div class="grid-div-parent">
+              <div class="grid-div-start"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-last"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%; font-size: 11px" class="input-box-title">
+              Occupation:
+            </div>
+            <div class="grid-div-parent">
+              <div class="grid-div-start"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-last"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%; font-size: 11px" class="input-box-title">
+              Highest Academic/Professional
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: start;
+                align-items: start;
+                flex-wrap: wrap; /* Allow boxes to wrap */
+                gap: 4px;
+                flex: 1;
+              "
+              class="input-box"
+            >
+              <div style="display: flex; gap: 20px">
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    No Formal Education
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    Primary
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    Secondary
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    Pre-University
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%; font-size: 11px" class="input-box-title">
+              Qualifications Attained:*
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: start;
+                align-items: start;
+                flex-wrap: wrap; /* Allow boxes to wrap */
+                gap: 4px;
+                flex: 1;
+              "
+              class="input-box"
+            >
+              <div style="display: flex; gap: 20px">
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    Diploma
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    University
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    Post-Graduate
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%; font-size: 11px" class="input-box-title">
+              Annual Income in Singapore dollars (SGD):
+            </div>
+            <div class="grid-div-parent">
+              <div class="grid-div-start"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-last"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%; font-size: 11px" class="input-box-title">
+              Religion:
+            </div>
+            <div class="grid-div-parent">
+              <div class="grid-div-start"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-last"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 10px;
+            "
+          >
+            <div
+              style="width: fit-content; font-size: 11px"
+              class="input-box-title"
+            >
+              Expected Date of Arrival in Singapore:
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: start;
+                align-items: start;
+                flex-wrap: wrap; /* Allow boxes to wrap */
+                gap: 2px;
+                margin-bottom: 10px;
+                flex: 1;
+              "
+              class="input-box"
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: start;
+                  align-items: start;
+                  flex-wrap: wrap; /* Allow boxes to wrap */
+                  gap: 2px;
+                "
+                class="input-box"
+              >
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: start;
+                  "
+                >
+                  <div style="position: relative">
+                    <div
+                      style="
+                        width: 20px;
+                        height: 20px;
+                        border: 1px solid black;
+                        text-align: center;
+                        line-height: 20px;
+                      "
+                    >
+                      0
+                    </div>
+                    <div
+                      style="
+                        position: absolute;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        -top: 2px;
+                        font-size: 10px;
+                        font-style: italic;
+                      "
+                    >
+                      D
+                    </div>
+                  </div>
+                  <div style="position: relative">
+                    <div
+                      style="
+                        width: 20px;
+                        height: 20px;
+                        border: 1px solid black;
+                        border-left: 0px;
+                        text-align: center;
+                        line-height: 20px;
+                      "
+                    >
+                      5
+                    </div>
+                    <div
+                      style="
+                        position: absolute;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        -top: 2px;
+                        font-size: 10px;
+                        font-style: italic;
+                      "
+                    >
+                      D
+                    </div>
+                  </div>
+                  <div>---</div>
+                  <div style="position: relative">
+                    <div
+                      style="
+                        width: 20px;
+                        height: 20px;
+                        border: 1px solid black;
+                        text-align: center;
+                        line-height: 20px;
+                      "
+                    >
+                      0
+                    </div>
+                    <div
+                      style="
+                        position: absolute;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        -top: 2px;
+                        font-size: 10px;
+                        font-style: italic;
+                      "
+                    >
+                      M
+                    </div>
+                  </div>
+                  <div style="position: relative">
+                    <div
+                      style="
+                        width: 20px;
+                        height: 20px;
+                        border: 1px solid black;
+                        border-left: 0px;
+
+                        text-align: center;
+                        line-height: 20px;
+                      "
+                    >
+                      7
+                    </div>
+                    <div
+                      style="
+                        position: absolute;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        -top: 2px;
+                        font-size: 10px;
+                        font-style: italic;
+                      "
+                    >
+                      M
+                    </div>
+                  </div>
+                  <div>---</div>
+                  <div style="position: relative">
+                    <div
+                      style="
+                        width: 20px;
+                        height: 20px;
+                        border: 1px solid black;
+                        text-align: center;
+                        line-height: 20px;
+                      "
+                    >
+                      1
+                    </div>
+                    <div
+                      style="
+                        position: absolute;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        -top: 2px;
+                        font-size: 10px;
+                        font-style: italic;
+                      "
+                    >
+                      Y
+                    </div>
+                  </div>
+                  <div style="position: relative">
+                    <div
+                      style="
+                        width: 20px;
+                        height: 20px;
+                        border: 1px solid black;
+                        border-left: 0px;
+
+                        text-align: center;
+                        line-height: 20px;
+                      "
+                    >
+                      9
+                    </div>
+                    <div
+                      style="
+                        position: absolute;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        -top: 2px;
+                        font-size: 10px;
+                        font-style: italic;
+                      "
+                    >
+                      Y
+                    </div>
+                  </div>
+                  <div style="position: relative">
+                    <div
+                      style="
+                        width: 20px;
+                        height: 20px;
+                        border: 1px solid black;
+                        border-left: 0px;
+
+                        text-align: center;
+                        line-height: 20px;
+                      "
+                    >
+                      7
+                    </div>
+                    <div
+                      style="
+                        position: absolute;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        -top: 2px;
+                        font-size: 10px;
+                        font-style: italic;
+                      "
+                    >
+                      Y
+                    </div>
+                  </div>
+                  <div style="position: relative">
+                    <div
+                      style="
+                        width: 20px;
+                        height: 20px;
+                        border: 1px solid black;
+                        text-align: center;
+                        line-height: 20px;
+                        border-left: 0px;
+                      "
+                    >
+                      8
+                    </div>
+                    <div
+                      style="
+                        position: absolute;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        -top: 2px;
+                        font-size: 10px;
+                        font-style: italic;
+                      "
+                    >
+                      Y
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 10px;
+            "
+          >
+            <div
+              style="width: fit-content; font-size: 11px"
+              class="input-box-title"
+            >
+              Type of Visa:*
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: start;
+                align-items: start;
+                flex-wrap: wrap; /* Allow boxes to wrap */
+                gap: 4px;
+                flex: 1;
+              "
+              class="input-box"
+            >
+              <div style="display: flex; gap: 10px">
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    Pre-University
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    Single Journey
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    Double Journey
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    Triple Journey
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    Multiple Journey
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 10px;
+            "
+          >
+            <div
+              style="width: fit-content; font-size: 11px"
+              class="input-box-title"
+            >
+              Purpose of visit:*
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: start;
+                align-items: start;
+                flex-wrap: wrap; /* Allow boxes to wrap */
+                gap: 4px;
+                flex: 1;
+              "
+              class="input-box"
+            >
+              <div style="display: flex; gap: 10px">
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    Social
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    Business
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 10px;
+            "
+          >
+            <div
+              style="width: fit-content; font-size: 11px"
+              class="input-box-title"
+            >
+              Details of purpose:
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: start;
+                align-items: start;
+                flex-wrap: wrap; /* Allow boxes to wrap */
+                gap: 2px;
+
+                flex: 1;
+              "
+              class="input-box"
+            >
+              <div
+                style="
+                  flex: 1;
+                  padding-bottom: 3px;
+                  border-bottom: 2px solid black;
+                  font-size: 11px;
+                "
+              >
+                TOURISM
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 10px;
+            "
+          >
+            <div
+              style="width: fit-content; font-size: 11px"
+              class="input-box-title"
+            >
+              How long do you intend to stay in Singapore:*
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: start;
+                align-items: start;
+                flex-wrap: wrap; /* Allow boxes to wrap */
+                gap: 4px;
+                flex: 1;
+              "
+              class="input-box"
+            >
+              <div style="display: flex; gap: 10px">
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    Less than 30 days
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    More than 30 days
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 10px;
+            "
+          >
+            <div
+              style="width: fit-content; font-size: 11px"
+              class="input-box-title"
+            >
+              If your intended stay in Singapore is more than 30 days, please
+              state the reason for your intended length of stay and the duration
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              margin-top: 20px;
+              margin-bottom: 10px;
+              align-items: center;
+              justify-content: start;
+              gap: 10px;
+            "
+          >
+            <div
+              style="
+                width: 100%;
+                font-size: 11px;
+                border-bottom: 2px solid black;
+              "
+            ></div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              margin-bottom: 40px;
+              align-items: center;
+              justify-content: start;
+              gap: 10px;
+            "
+          >
+            <div
+              style="
+                width: 100%;
+                font-size: 11px;
+                border-bottom: 2px solid black;
+              "
+            ></div>
+          </td>
+        </tr>
+      </table>
+
+      <table
+        style="
+          width: 100%;
+          margin-top: 10px;
+          border-collapse: collapse;
+          border-top: 1px solid black;
+          border-left: 1px solid black;
+          border-right: 1px solid black;
+          border-bottom: 1px solid black;
+        "
+      >
+        <tr>
+          <th
+            style="
+              font-weight: bold;
+              border-top: 1px solid black;
+              text-align: left;
+              margin-left: 30px;
+              position: relative;
+              top: -10px;
+              right: 5px;
+              font-size: 11px;
+              font-style: italic;
+            "
+          >
+            Address in Singapore
+          </th>
+        </tr>
+
+        <tr>
+          <td style="font-size: 11px; padding: 4px">
+            <div style="margin-bottom: 8px">
+              Where will you be staying in Singapore?:*
+            </div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                justify-content: start;
+              "
+            >
+              <div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: start;
+                    gap: 3px;
+                  "
+                >
+                  <div
+                    style="
+                      height: 10px;
+                      width: 10px;
+                      border: 1px solid black;
+                      padding: 1px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="height: 100%; width: 100%; background-color: black"
+                    ></div>
+                  </div>
+                  Next of Kin’s Place
+                </div>
+              </div>
+              <div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: start;
+                    gap: 3px;
+                  "
+                >
+                  <div
+                    style="
+                      height: 10px;
+                      width: 10px;
+                      border: 1px solid black;
+                      padding: 1px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="height: 100%; width: 100%; background-color: black"
+                    ></div>
+                  </div>
+                  Relative’s Place
+                </div>
+              </div>
+              <div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: start;
+                    gap: 3px;
+                  "
+                >
+                  <div
+                    style="
+                      height: 10px;
+                      width: 10px;
+                      border: 1px solid black;
+                      padding: 1px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="height: 100%; width: 100%; background-color: black"
+                    ></div>
+                  </div>
+                  Friend’s Place
+                </div>
+              </div>
+              <div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: start;
+                    gap: 3px;
+                  "
+                >
+                  <div
+                    style="
+                      height: 10px;
+                      width: 10px;
+                      border: 1px solid black;
+                      padding: 1px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="height: 100%; width: 100%; background-color: black"
+                    ></div>
+                  </div>
+                  Hotel
+                </div>
+              </div>
+              <div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: start;
+                    gap: 3px;
+                  "
+                >
+                  <div
+                    style="
+                      height: 10px;
+                      width: 10px;
+                      border: 1px solid black;
+                      padding: 1px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="height: 100%; width: 100%; background-color: black"
+                    ></div>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: 3px;
+                      justify-content: start;
+                    "
+                  >
+                    <div style="width: fit-content">
+                      Others (Please specify):
+                    </div>
+                    <div
+                      style="
+                        flex: 1;
+                        padding-bottom: 3px;
+                        width: 200px;
+                        border-bottom: 2px solid black;
+                      "
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-size: 11px; padding: 4px">
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: start;
+                gap: 50px;
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 3px;
+                "
+              >
+                <div>Block/House No.:</div>
+                <div style="display: flex; align-items: center">
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      border-left: 0px;
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      border-left: 0px;
+
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      border-left: 0px;
+
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      border-left: 0px;
+
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  ></div>
+                </div>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 3px;
+                "
+              >
+                <div>Floor No.:</div>
+                <div style="display: flex; align-items: center">
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      border-left: 0px;
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  ></div>
+                </div>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 3px;
+                "
+              >
+                <div>Unit No.:</div>
+                <div style="display: flex; align-items: center">
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      border-left: 0px;
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      border-left: 0px;
+
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      border-left: 0px;
+
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  ></div>
+                </div>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 3px;
+                "
+              >
+                <div>Postal Code:</div>
+                <div style="display: flex; align-items: center">
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      border-left: 0px;
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      border-left: 0px;
+
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      border-left: 0px;
+
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      border-left: 0px;
+
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      border-left: 0px;
+
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: start;
+                gap: 15px;
+                margin: 5px;
+              "
+            >
+              <div>Street Name:</div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: start;
+                "
+              >
+                <div class="grid-div-start"></div>
+                <div class="grid-div-middle"></div>
+                <div class="grid-div-middle"></div>
+                <div class="grid-div-middle"></div>
+                <div class="grid-div-middle"></div>
+                <div class="grid-div-middle"></div>
+                <div class="grid-div-middle"></div>
+                <div class="grid-div-middle"></div>
+                <div class="grid-div-middle"></div>
+                <div class="grid-div-middle"></div>
+                <div class="grid-div-middle"></div>
+                <div class="grid-div-middle"></div>
+                <div class="grid-div-middle"></div>
+                <div class="grid-div-middle"></div>
+                <div class="grid-div-middle"></div>
+                <div class="grid-div-middle"></div>
+                <div class="grid-div-middle"></div>
+                <div class="grid-div-middle"></div>
+                <div class="grid-div-middle"></div>
+                <div class="grid-div-last"></div>
+              </div>
+              <div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: start;
+                  "
+                >
+                  <div>Contact No:</div>
+                  <div
+                    style="
+                      border-bottom: 2px solid black;
+                      margin-top: 2px;
+                      min-width: 90px;
+                    "
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 10px;
+            "
+          >
+            <div
+              style="width: fit-content; font-size: 11px"
+              class="input-box-title"
+            >
+              Building Name:
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: start;
+                align-items: start;
+                flex-wrap: wrap; /* Allow boxes to wrap */
+                gap: 2px;
+                flex: 1;
+              "
+              class="input-box"
+            >
+              <div
+                style="
+                  flex: 1;
+                  padding-bottom: 3px;
+                  border-bottom: 2px solid black;
+                  font-size: 11px;
+                "
+              >
+                AJU HOTEL
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr style="border-top: 1px solid black">
+          <td>
+            <div style="font-size: 12px; padding: 5px">
+              Did you reside in other countries/places, other than your
+              country/place of origin, for one year or more during the last 5
+              years ?*
+            </div>
+            <div style="margin-left: 50px; margin-bottom: 5px">
+              <div
+                style="
+                  display: flex;
+                  justify-content: start;
+                  align-items: start;
+                  flex-wrap: wrap; /* Allow boxes to wrap */
+                  gap: 4px;
+                  flex: 1;
+                "
+                class="input-box"
+              >
+                <div style="display: flex; gap: 40px">
+                  <div>
+                    <div
+                      style="
+                        display: flex;
+                        align-items: center;
+                        justify-content: start;
+                        gap: 3px;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 10px;
+                          width: 10px;
+                          border: 1px solid black;
+                          padding: 1px;
+                          display: flex;
+                          justify-content: center;
+                          align-items: center;
+                        "
+                      >
+                        <div
+                          style="
+                            height: 100%;
+                            width: 100%;
+                            background-color: black;
+                          "
+                        ></div>
+                      </div>
+                      Yes
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      style="
+                        display: flex;
+                        align-items: center;
+                        justify-content: start;
+                        gap: 3px;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 10px;
+                          width: 10px;
+                          border: 1px solid black;
+                          padding: 1px;
+                          display: flex;
+                          justify-content: center;
+                          align-items: center;
+                        "
+                      >
+                        <div
+                          style="
+                            height: 100%;
+                            width: 100%;
+                            background-color: black;
+                          "
+                        ></div>
+                      </div>
+                      No
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <!-- <tr>
+          <td colspan="3" style="width: 50%; border: 1px solid black">
+            If yes, please furnish details
+          </td>
+          <td style="width: 50%; border: 1px solid black">Period of Stay</td>
+        </tr>
+        <tr>
+          <td style="width: 25%; border: 1px solid black">Country/Place</td>
+          <td style="width: 50%; border: 1px solid black">Address</td>
+          <td style="width: 12.5%; border: 1px solid black">From</td>
+          <td style="width: 12.5%; border: 1px solid black">To</td>
+        </tr>
+        <tr>
+          <td style="width: 25%; height: 200px; border: 1px solid black"></td>
+          <td style="width: 50%; height: 200px; border: 1px solid black"></td>
+          <td style="width: 12.5%; height: 200px; border: 1px solid black"></td>
+          <td style="width: 12.5%; height: 200px; border: 1px solid black"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr> -->
+        <tr style="border-top: 1px solid black">
+          <td style="font-size: 12px; font-style: italic; padding: 5px">
+            Details of Travelling Companion
+          </td>
+        </tr>
+        <tr>
+          <td style="font-size: 12px; font-style: italic; padding: 5px">
+            (Only for applicant who is 12 years old or less at the point of
+            application. Details are not required if applicant is accompanied by
+            an airline representative.)
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%; font-size: 11px" class="input-box-title">
+              Relationship of Travelling Companion To Applicant:
+            </div>
+            <div class="grid-div-parent">
+              <div class="grid-div-start"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-last"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%; font-size: 11px" class="input-box-title">
+              Name:
+            </div>
+            <div class="grid-div-parent-2">
+              <div
+                class="grid-div-start-2"
+                style="border-top: 1px solid black"
+              ></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-last"></div>
+
+              <div class="grid-div-start-2"></div>
+
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-last-2"></div>
+            </div>
+          </td>
+        </tr>
+        <tr style="padding: 2px">
+          <td style="display: flex; align-items: center">
+            <div
+              style="
+                padding: 2px;
+                margin-right: 100px;
+                display: flex;
+                gap: 10px;
+                margin-bottom: 10px;
+              "
+            >
+              <div>Date of Birth:</div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  margin-top: 15px;
+                  justify-content: start;
+                "
+              >
+                <div style="position: relative">
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  >
+                    0
+                  </div>
+                  <div
+                    style="
+                      position: absolute;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      -top: 2px;
+                      font-size: 10px;
+                      font-style: italic;
+                    "
+                  >
+                    D
+                  </div>
+                </div>
+                <div style="position: relative">
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      border-left: 0px;
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  >
+                    5
+                  </div>
+                  <div
+                    style="
+                      position: absolute;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      -top: 2px;
+                      font-size: 10px;
+                      font-style: italic;
+                    "
+                  >
+                    D
+                  </div>
+                </div>
+                <div>---</div>
+                <div style="position: relative">
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  >
+                    0
+                  </div>
+                  <div
+                    style="
+                      position: absolute;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      -top: 2px;
+                      font-size: 10px;
+                      font-style: italic;
+                    "
+                  >
+                    M
+                  </div>
+                </div>
+                <div style="position: relative">
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      border-left: 0px;
+
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  >
+                    7
+                  </div>
+                  <div
+                    style="
+                      position: absolute;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      -top: 2px;
+                      font-size: 10px;
+                      font-style: italic;
+                    "
+                  >
+                    M
+                  </div>
+                </div>
+                <div>---</div>
+                <div style="position: relative">
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  >
+                    1
+                  </div>
+                  <div
+                    style="
+                      position: absolute;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      -top: 2px;
+                      font-size: 10px;
+                      font-style: italic;
+                    "
+                  >
+                    Y
+                  </div>
+                </div>
+                <div style="position: relative">
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      border-left: 0px;
+
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  >
+                    9
+                  </div>
+                  <div
+                    style="
+                      position: absolute;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      -top: 2px;
+                      font-size: 10px;
+                      font-style: italic;
+                    "
+                  >
+                    Y
+                  </div>
+                </div>
+                <div style="position: relative">
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      border-left: 0px;
+
+                      text-align: center;
+                      line-height: 20px;
+                    "
+                  >
+                    7
+                  </div>
+                  <div
+                    style="
+                      position: absolute;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      -top: 2px;
+                      font-size: 10px;
+                      font-style: italic;
+                    "
+                  >
+                    Y
+                  </div>
+                </div>
+                <div style="position: relative">
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1px solid black;
+                      text-align: center;
+                      line-height: 20px;
+                      border-left: 0px;
+                    "
+                  >
+                    8
+                  </div>
+                  <div
+                    style="
+                      position: absolute;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      -top: 2px;
+                      font-size: 10px;
+                      font-style: italic;
+                    "
+                  >
+                    Y
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                justify-content: start;
+              "
+            >
+              <div style="margin-bottom: 20px">Sex:*</div>
+              <div style="margin-top: 10px">
+                <div class="checkbox-group">
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: start;
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 10px;
+                        width: 10px;
+                        border: 1px solid black;
+                        padding: 1px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          height: 100%;
+                          width: 100%;
+                          background-color: black;
+                        "
+                      ></div>
+                    </div>
+                    <div>Male</div>
+                  </div>
+                  <div
+                    style="
+                      height: 10px;
+                      width: 10px;
+                      border: 1px solid black;
+                      padding: 1px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="height: 100%; width: 100%; background-color: black"
+                    ></div>
+                  </div>
+                  <div>Female</div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%; font-size: 11px" class="input-box-title">
+              Nationality/Citizenship:
+            </div>
+            <div class="grid-div-parent">
+              <div class="grid-div-start"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-last"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%; font-size: 11px" class="input-box-title">
+              Travel Document Number:
+            </div>
+            <div class="grid-div-parent">
+              <div class="grid-div-start"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+
+              <div class="grid-div-last"></div>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <table
+        class="table"
+        style="margin-top: 20px; border-bottom: 1px solid black"
+      >
+        <tr>
+          <th class="table-head">PART III – PARTICULARS OF LOCAL CONTACT</th>
+        </tr>
+
+        <tr>
+          <td>
+            <div style="font-size: 12px; font-style: italic; padding: 4px">
+              Details of Local Contact or Company/Hotel in Singapore
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%; font-size: 11px" class="input-box-title">
+              Name of Local Contact /Company/Hotel:
+            </div>
+            <div class="grid-div-parent-2">
+              <div
+                class="grid-div-start-2"
+                style="border-top: 1px solid black"
+              ></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-last"></div>
+
+              <div class="grid-div-start-2"></div>
+
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-middle-2"></div>
+              <div class="grid-div-last-2"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              padding: 5px;
+              vertical-align: top;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 30px;
+            "
+          >
+            <div style="width: 20%; font-size: 11px" class="input-box-title">
+              Relationship of Local Contact/Company/ Hotel to Applicant:
+            </div>
+            <div class="grid-div-parent">
+              <div class="grid-div-start"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+              <div class="grid-div-middle"></div>
+
+              <div class="grid-div-last"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div
+              style="
+                display: flex;
+                padding-bottom: 30px;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                gap: 10px;
+              "
+            >
+              <div
+                style="
+                  padding: 5px;
+                  vertical-align: top;
+                  display: flex;
+                  align-items: center;
+                  justify-content: start;
+                  gap: 10px;
+                  width: 50%;
+                "
+              >
+                <div
+                  style="width: fit-content; font-size: 11px"
+                  class="input-box-title"
+                >
+                  Contact No.:
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: start;
+                    align-items: start;
+                    flex-wrap: wrap; /* Allow boxes to wrap */
+                    gap: 2px;
+                    flex: 1;
+                  "
+                  class="input-box"
+                >
+                  <div
+                    style="
+                      flex: 1;
+                      padding-bottom: 3px;
+                      border-bottom: 2px solid black;
+                      font-size: 11px;
+                    "
+                  ></div>
+                </div>
+              </div>
+              <div
+                style="
+                  padding: 5px;
+                  vertical-align: top;
+                  display: flex;
+                  align-items: center;
+                  justify-content: start;
+                  gap: 10px;
+                  width: 50%;
+                "
+              >
+                <div
+                  style="width: fit-content; font-size: 11px"
+                  class="input-box-title"
+                >
+                  Email Address:
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: start;
+                    align-items: start;
+                    flex-wrap: wrap; /* Allow boxes to wrap */
+                    gap: 2px;
+                    flex: 1;
+                  "
+                  class="input-box"
+                >
+                  <div
+                    style="
+                      flex: 1;
+                      padding-bottom: 3px;
+                      border-bottom: 2px solid black;
+                      font-size: 11px;
+                    "
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-head">PART IV – ANTECEDENT OF APPLICANT*</td>
+        </tr>
+        <tr>
+          <td style="padding: 5px">
+            <div
+              style="
+                display: flex;
+                margin-bottom: 10px;
+                align-items: center;
+                justify-content: space-between;
+              "
+            >
+              <div style="flex: 1">
+                (a) Have you ever been refused entry into or deported from any
+                country/place, including Singapore?
+              </div>
+              <div
+                style="
+                  display: flex;
+                  width: 150px;
+                  align-items: center;
+                  justify-content: start;
+                  gap: 20px;
+                "
+              >
+                <div style="display: flex; align-items: center; gap: 5px">
+                  <div
+                    style="
+                      height: 10px;
+                      width: 10px;
+                      border: 1px solid black;
+                      padding: 1px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="height: 100%; width: 100%; background-color: black"
+                    ></div>
+                  </div>
+                  <div>Yes</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 5px">
+                  <div
+                    style="
+                      height: 10px;
+                      width: 10px;
+                      border: 1px solid black;
+                      padding: 1px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="height: 100%; width: 100%; background-color: black"
+                    ></div>
+                  </div>
+                  <div>No</div>
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                display: flex;
+                margin-bottom: 10px;
+                align-items: center;
+                justify-content: space-between;
+              "
+            >
+              <div style="flex: 1">
+                (b) Have you ever been convicted in a court of law in any
+                country/place, including Singapore?
+              </div>
+              <div
+                style="
+                  display: flex;
+                  width: 150px;
+                  align-items: center;
+                  justify-content: start;
+                  gap: 20px;
+                "
+              >
+                <div style="display: flex; align-items: center; gap: 5px">
+                  <div
+                    style="
+                      height: 10px;
+                      width: 10px;
+                      border: 1px solid black;
+                      padding: 1px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="height: 100%; width: 100%; background-color: black"
+                    ></div>
+                  </div>
+                  <div>Yes</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 5px">
+                  <div
+                    style="
+                      height: 10px;
+                      width: 10px;
+                      border: 1px solid black;
+                      padding: 1px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="height: 100%; width: 100%; background-color: black"
+                    ></div>
+                  </div>
+                  <div>No</div>
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                display: flex;
+                margin-bottom: 10px;
+                align-items: center;
+                justify-content: space-between;
+              "
+            >
+              <div style="flex: 1">
+                (c) Have you ever been prohibited from entering Singapore?
+              </div>
+              <div
+                style="
+                  display: flex;
+                  width: 150px;
+                  align-items: center;
+                  justify-content: start;
+                  gap: 20px;
+                "
+              >
+                <div style="display: flex; align-items: center; gap: 5px">
+                  <div
+                    style="
+                      height: 10px;
+                      width: 10px;
+                      border: 1px solid black;
+                      padding: 1px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="height: 100%; width: 100%; background-color: black"
+                    ></div>
+                  </div>
+                  <div>Yes</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 5px">
+                  <div
+                    style="
+                      height: 10px;
+                      width: 10px;
+                      border: 1px solid black;
+                      padding: 1px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="height: 100%; width: 100%; background-color: black"
+                    ></div>
+                  </div>
+                  <div>No</div>
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                display: flex;
+                margin-bottom: 10px;
+                align-items: center;
+                justify-content: space-between;
+              "
+            >
+              <div style="flex: 1">
+                (d) Have you ever entered Singapore using a different passport
+                or name?
+              </div>
+              <div
+                style="
+                  display: flex;
+                  width: 150px;
+                  align-items: center;
+                  justify-content: start;
+                  gap: 20px;
+                "
+              >
+                <div style="display: flex; align-items: center; gap: 5px">
+                  <div
+                    style="
+                      height: 10px;
+                      width: 10px;
+                      border: 1px solid black;
+                      padding: 1px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="height: 100%; width: 100%; background-color: black"
+                    ></div>
+                  </div>
+                  <div>Yes</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 5px">
+                  <div
+                    style="
+                      height: 10px;
+                      width: 10px;
+                      border: 1px solid black;
+                      padding: 1px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  >
+                    <div
+                      style="height: 100%; width: 100%; background-color: black ;
+                      
+                      "
+                    ></div>
+                  </div>
+                  <div>No</div>
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                display: flex;
+                margin-bottom: 10px;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 20px;
+              "
+            >
+              <div style="flex: 1; font-style: italic">
+                If any of the answer is “YES”, please furnish details below
+              </div>
+            </div>
+            <div
+              style="
+                width: 100%;
+                height: 2px;
+                background-color: black;
+                margin-bottom: 15px;
+              "
+            ></div>
+            <div
+              style="
+                width: 100%;
+                height: 2px;
+                background-color: black;
+                margin-bottom: 15px;
+              "
+            ></div>
+            <div
+              style="
+                width: 100%;
+                height: 2px;
+                background-color: black;
+                margin-bottom: 15px;
+              "
+            ></div>
+          </td>
+        </tr>
+      </table>
+
+      <table
+        class="table"
+        style="margin-top: 20px; border-bottom: 1px solid black"
+      >
+        <tr>
+          <th class="table-head">PART V - DECLARATION BY APPLICANT</th>
+        </tr>
+        <tr>
+          <td>
+            <div style="margin-top: 15px; padding-left: 5px; font-size: 12px">
+              I declare that all information submitted in this application is
+              true, accurate and complete to the best of my knowledge and
+              belief. I understand that, if I have concealed relevant
+              information or provided false, inaccurate or misleading
+              information, I may be prosecuted and any facilities, rights or
+              privileges granted under this application may be withdrawn.
+            </div>
+            <div style="margin-top: 10px; font-size: 12px; padding-left: 5px">
+              I undertake not to misuse controlled drugs or to take part in any
+              political or other activities during my stay in Singapore which
+              would make me an undesirable or prohibited immigrant under the
+              Immigration Act 1959.
+            </div>
+            <div style="margin-top: 10px; font-size: 12px; padding-left: 5px">
+              I undertake to comply with the provisions of the Immigration Act
+              1959 and any regulations made thereunder or any statutory
+              modification or re-enactment thereof for the time being in force
+              in Singapore.
+            </div>
+            <div style="margin-top: 10px; font-size: 12px; padding-left: 5px">
+              I undertake not to involve in any criminal offences in Singapore.
+            </div>
+            <div style="margin-top: 10px; font-size: 12px; padding-left: 5px">
+              I further undertake not to be engaged in any form of employment,
+              business or occupation whilst in Singapore without a valid work
+              pass issued under the Employment of Foreign Manpower Act 1990.
+            </div>
+            <div style="margin-top: 10px; font-size: 12px; padding-left: 5px">
+              I am aware that overstaying or working illegally in Singapore is a
+              serious offence and on conviction, the penalties may include
+              mandatory imprisonment and caning.
+            </div>
+            <div style="margin-top: 10px; font-size: 12px; padding-left: 5px">
+              I understand that if the Controller of Immigration is satisfied
+              that I or any member of my family breaches this undertaking or
+              becomes an undesirable or prohibited immigrant, he will cancel my
+              immigration pass and the passes of the members of my family, and
+              we may be required to leave Singapore within 24 hours of such
+              cancellation.
+            </div>
+            <div style="margin-top: 10px; font-size: 12px; padding-left: 5px">
+              I understand that this application for and possession of a visa
+              does not guarantee entry into Singapore and permission to entry is
+              entirely discretionary at the point of entry.
+            </div>
+            <div
+              style="
+                margin-top: 10px;
+                font-size: 12px;
+                padding-left: 5px;
+                margin-bottom: 25px;
+              "
+            >
+              I give my consent for your department to obtain and verify
+              information from or with any source as you deem appropriate for
+              the assessment of my application for immigration facilities.
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div style="display: flex; justify-content: space-around">
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <div>OCT 15, 2024</div>
+                <div style="border-bottom: 1px solid black; width: 200px"></div>
+                <div>Date</div>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <!-- <div>OCT 15, 2024</div> -->
+                <div style="border-bottom: 1px solid black; width: 200px"></div>
+                <div>Signature of Applicant
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
